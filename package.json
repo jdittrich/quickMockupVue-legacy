@@ -8,11 +8,11 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "babel-runtime": "^6.0.0",
     "interact.js": "^1.2.6",
     "normalize.css": "^4.1.1",
     "vue": "^1.0.0",
-    "vuex": "^0.6.3"
+    "vuex": "^0.6.3",
+    "babel-runtime": "^6.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

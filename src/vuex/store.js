@@ -41,6 +41,6 @@ export default new Vuex.Store({
 	state:state,
 	mutations:mutations,
 	strict: true
-})
+});
 
 

@@ -1,19 +1,20 @@
 <template>
-  <div id="mockup">
-    {{allelements|json}}
-  </div>
+    <div id="mockupWrapper">
+        <div id="mockupCanvas">
+        {{allelements|json}}
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-  vuex:{
-    getters: {
-      allelements(state){
-        return state.elements;
-      }
-  }
-
-  }
+    vuex:{
+        getters: {
+            allelements(state){
+            return state.elements;
+            }
+        }
+    }
 }
 </script>
 

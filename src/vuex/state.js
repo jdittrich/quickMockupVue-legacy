@@ -1,11 +1,11 @@
-export default  { //should there be a var or whatever...
+export default  { //should there be a var?
 	title:"myProject",
-	elementTemplates:[
+	widgetTemplates:[
 		{
 			name:"button",
 			template:"<div>I AM BUTTON</div>"
 		},
-		
+		{
 			name:"window",
 			template:"<div>WINDOW, I AM, YODA, TOO, I AM</div>"
 		}	
@@ -13,26 +13,42 @@ export default  { //should there be a var or whatever...
 	canvas:{
 		children:[0]
 	},
-	}
-	elements:[{
-		text:"I AM Canvas!",
-		_id:"0",
-		children:["1","2"],
-	},
-	{
-		text:"eins",
-		_id:"1",
-		children:["3"],
-	},
-	{
-		text:"zwei",
-		_id:"2",
-		children:[],
-	},
-	{
-		text:"drei",
-		_id:"3",
-		children:[],
-	},
+	elements:[
+        {
+            position:{x:0,y:0},
+            dimensions:{x:100,y:100},
+            content:{
+                text:"I AM Canvas!",
+            },
+            _id:"0",
+            children:["1","2"],
+        },
+        {
+            position:{x:0,y:0},
+            dimensions:{x:100,y:100},
+            content:{
+                 text:"eins",
+            },
+            _id:"1",
+            children:["3"],
+        },
+        {
+            position:{x:0,y:0},
+            dimensions:{x:100,y:100},
+            content:{
+                text:"zwei",
+            },
+            _id:"2",
+            children:[],
+        },
+        {
+            position:{x:0,y:0},
+            dimensions:{x:100,y:100},
+            content:{
+                text:"drei",
+            },
+            _id:"3",
+            children:[],
+        },
 	]
 };

@@ -1,19 +1,13 @@
 <template>
-  <div id="sidebar">
-      safsafsafas
+  <div class="widgetTemplate">
+      heho
   </div>
 </template>
 
 <script>
 
 export default {
-    /*vuex:{
-        getters: {
-            allelements(state){
-                return state.elements;
-            }
-        }
-    }*/
+    
 }
 </script>
 <style>
