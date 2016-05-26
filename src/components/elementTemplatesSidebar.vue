@@ -1,6 +1,5 @@
 <template>
   <div class="sidebar">
-      {{allWidgetTemplates|json}}
       <widgettemplate v-for="template in allWidgetTemplates"></widgettemplate>
   </div>
 </template>
