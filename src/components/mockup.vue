@@ -1,12 +1,15 @@
 <template>
     <div id="mockupWrapper">
-        <div id="mockupCanvas">
-        {{allelements|json}}
+        <div id="mockupCanvas" >
+        
         </div>
     </div>
 </template>
 
-<script>
+<script> 
+
+// braucht mixin drop für children  
+
 export default {
     vuex:{
         getters: {
