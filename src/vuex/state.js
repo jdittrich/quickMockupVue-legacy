@@ -8,20 +8,23 @@ export default  { //should there be a var?
 		{
 			name:"window",
 			template:"<div>WINDOW, I AM, <strong>YODA</strong>, TOO, I AM</div>"
-		}	
-	],	
+		}
+	],
 	canvas:{
-		children:[0]
+    dimensions:{x:1000,y:1000},
+    content:{},
+    children:["1","2"]
 	},
 	elements:[
         {
             position:{x:0,y:0},
-            dimensions:{x:100,y:100},
+            dimensions:{x:1000,y:1000},
             content:{
                 text:"I AM Canvas!",
             },
             _id:"0",
             children:["1","2"],
+            widgetType:"button"
         },
         {
             position:{x:0,y:0},
@@ -31,6 +34,7 @@ export default  { //should there be a var?
             },
             _id:"1",
             children:["3"],
+            widgetType: "window",
         },
         {
             position:{x:0,y:0},
@@ -40,6 +44,7 @@ export default  { //should there be a var?
             },
             _id:"2",
             children:[],
+            widgetType: "window"
         },
         {
             position:{x:0,y:0},
@@ -49,6 +54,7 @@ export default  { //should there be a var?
             },
             _id:"3",
             children:[],
+            widgetType:"button"
         },
 	]
 };
