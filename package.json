@@ -31,5 +31,5 @@
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
-  }
+  }	
 }
