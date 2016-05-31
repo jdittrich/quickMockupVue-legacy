@@ -14,10 +14,19 @@ Vue.directive('draggable', {
     interact(that.el)
       .draggable({
         autoscroll:true,
-        onmove:dragmoveListener,
-        onend:dragendListener,
-      .on('eventname', function (event) {
-      });
+        onmove:function(e){
+            //TODO: fix: which element should be controled? target, Interactable etc
+            var target = e.interactable;
+            var x = (parseFloat(target.getAttribute('data-xpos')) || 0) + event.dx,
+            var y = (parseFloat(target.getAttribute('data-ypos')) || 0) + event.dy;
+            
+            target.style.top = y+"px";
+            target.style.left = x+"px";
+            
+            target.setAttribute("data-xpos",x);
+            target.setAttribute("data-ypos",x);
+        },
+    });
   },
   update: function (newValue, oldValue) {
 
