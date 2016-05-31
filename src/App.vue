@@ -1,16 +1,19 @@
 <template>
   <div id="app">
       <sidebar></sidebar>
+      <mockupwrapper></mockupwrapper>
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
-import sidebar from './components/elementTemplatesSidebar.vue'    
+import sidebar from './components/elementTemplatesSidebar.vue'
+import mockupwrapper from './components/mockupWrapper.vue'
     
 export default {
     components:{
-        'sidebar':sidebar
+        'sidebar':sidebar,
+        'mockupwrapper':mockupwrapper
     },
     data () {
         return {

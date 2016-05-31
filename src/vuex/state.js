@@ -15,7 +15,7 @@ export default  { //should there be a var?
     content:{},
     children:["1","2"]
 	},
-	elements:[
+	mockupwidgets:[
         {
             position:{x:0,y:0},
             dimensions:{x:1000,y:1000},
