@@ -2,6 +2,7 @@
 import interact from 'interact.js'
 import vue from 'vue'
 
+
 Vue.directive('draggable', {
   //we need a two way bind here to change the values from within the directives functions!
   twoWay:true, //? <-> or better just dispatch?
@@ -11,7 +12,7 @@ Vue.directive('draggable', {
     // that needs to be run only once
     var that = this;
     var el = that.el;
-    interact(that.el)
+    interact(el)
       .draggable({
         autoscroll:true,
         onmove:function(e){
@@ -38,4 +39,15 @@ Vue.directive('draggable', {
     // e.g. remove event listeners added in bind()
     interact(this.el).unset();
   }
-})
+});
+
+function dragmoveListener(){
+  
+
+}
+
+
+function dragendListener(){
+  
+
+}
