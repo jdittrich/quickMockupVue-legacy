@@ -32,7 +32,7 @@ export default {
           return that.widgetdata.children.includes(element._id)
         });
         return childwidgets;
-      },
+      }
     },
     vuex:{
         getters: {
@@ -45,5 +45,8 @@ export default {
 </script>
 
 <style>
-
+.mockupwidget{
+    border:1px solid rgba(0,0,0,0.5);
+    margin-left:0.25em;
+}
 </style>
