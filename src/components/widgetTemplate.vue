@@ -12,7 +12,7 @@ import Vue from 'vue'
 export default {
     /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the partial dynamically in the created-hook which happens before the dom rendering and after the data binding.
 
-    TODO: does the partial registration leak?
+    DONE: does the partial registration leak? - no, if I require vue in another part of the app and try to call up a partial that was registered here, it is not availiable.
     */
 
     created:function(){
@@ -43,5 +43,7 @@ export default {
 </script>
 
 <style>
-
+.widgetTemplate{
+    margin-left:1em;
+}
 </style>
