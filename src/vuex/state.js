@@ -3,11 +3,11 @@ export default  { //should there be a var?
 	widgetTemplates:[
 		{
 			name:"button",
-			template:"<button>I AM BUTTON</button>"
+			templatestring:"<button>I AM BUTTON</button>"
 		},
 		{
 			name:"window",
-			template:"<div>WINDOW, I AM, <strong>YODA</strong>, TOO, I AM</div>"
+			templatestring:"<div>WINDOW, I AM, <strong>YODA</strong>, TOO, I AM</div>"
 		}
 	],
 	canvas:{

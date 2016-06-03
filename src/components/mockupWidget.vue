@@ -1,6 +1,6 @@
 <template>
 <div class="mockupwidget">
-    <!-- <widgettemplate :templatestring="template.template" :templatename="template.name"></widgettemplate>-->
+    <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>-->
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
     <div class="widgetChildren">
         <!-- recursive componenting. The v-if is really needed, otherwise: stackoverflow (literally, not that website) -->
@@ -26,21 +26,19 @@ export default {
     },
     computed:{
       childMockupWidgets(){ //uses ids to get the children's objects as values.
+        console.log(this.widgetdata)
         var that = this;
         var childwidgets = this.allwidgets.filter(function(element, index, array){
-          console.log("childwidgets", that)
           return that.widgetdata.children.includes(element._id)
         });
         return childwidgets;
       },
-
     },
     vuex:{
         getters: {
             allwidgets(state){
-                console.log(state.mockupwidgets)
                 return state.mockupwidgets;
-            },
+            }
         }
     }
 }

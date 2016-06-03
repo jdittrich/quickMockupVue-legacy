@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-      <widgettemplate v-for="template in allWidgetTemplates" :templatestring="template.template" :templatename="template.name"></widgettemplate>
+      <widgettemplate v-for="template in allWidgetTemplates" :templatestring="template.templatestring" :templatename="template.name"></widgettemplate>
   </div>
 </template>
 
@@ -13,7 +13,6 @@ import widgettemplate from './widgetTemplate.vue'
 
 
 export default {
-    
     components:{
         widgettemplate:widgettemplate
     },
