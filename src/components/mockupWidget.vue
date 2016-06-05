@@ -7,7 +7,12 @@
 
         <!-- TODO: I assume I should switch to single props instead of passing a whole object"-->
 
-        <mockupwidget v-if="childMockupWidgets.length > 0" v-for="mockupwidget in childMockupWidgets" :widgetdata="mockupwidget"></mockupwidget>
+        <mockupwidget
+            v-if="childMockupWidgets.length > 0"
+            v-for="mockupwidget in childMockupWidgets"
+            v-draggable="true"
+            :widgetdata="mockupwidget"
+            ></mockupwidget>
     </div>
 </div>
 </template>
@@ -15,11 +20,15 @@
 <script>
 // braucht mixin drop für children
 import widgettemplate from './widgetTemplate.vue';
+import draggable from '../directives/directive-draggable.js';
 
 export default {
     name:"mockupwidget",
     props:{
         widgetdata:Object
+    },
+    directives:{
+        'draggable':draggable
     },
     components:{
         widgettemplate:widgettemplate
@@ -28,7 +37,7 @@ export default {
       childMockupWidgets(){ //uses ids to get the children's objects as values.
         var that = this;
         var childwidgets = this.allwidgets.filter(function(element, index, array){
-          console.log("childwidgets", that)
+          //console.log("childwidgets", that)
           return that.widgetdata.children.includes(element._id)
         });
         return childwidgets;
@@ -38,7 +47,7 @@ export default {
     vuex:{
         getters: {
             allwidgets(state){
-                console.log(state.mockupwidgets)
+                //console.log(state.mockupwidgets)
                 return state.mockupwidgets;
             },
         }

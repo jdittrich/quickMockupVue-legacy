@@ -13,7 +13,6 @@ import widgettemplate from './widgetTemplate.vue'
 
 
 export default {
-    
     components:{
         widgettemplate:widgettemplate
     },

@@ -1,17 +1,23 @@
 <template>
     <div class="mockupCanvas">
-        <mockupwidget v-for="mockupwidget in childMockupWidgets" :widgetdata="mockupwidget"></mockupwidget>
+        <mockupwidget v-for="mockupwidget in childMockupWidgets" v-draggable="true" :widgetdata="mockupwidget" ></mockupwidget>
     </div>
 </template>
 
-<script> 
+<script>
 import mockupwidget from './mockupWidget.vue'
-// braucht mixin drop für children  
+import draggable from '../directives/directive-draggable.js';
+
 
 export default {
     //possible TODO: canvas and widget use the same childMockupWidgets and allwidgets methods: Componentize.
     components:{
         "mockupwidget":mockupwidget
+    },
+    //not ideal. Draggables are only for <mockupwidget> but I need to call it here since
+    //I create a mockupwidget in the canvas' template.
+    directives:{
+        'draggable':draggable
     },
     computed:{
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
