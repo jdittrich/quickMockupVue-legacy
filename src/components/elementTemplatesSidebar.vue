@@ -28,5 +28,8 @@ export default {
     width: 200px;
     height: 100%;
     background-color: #AADDAA;
+    position: absolute;
+    top:0;
+    left:0;
 }
 </style>

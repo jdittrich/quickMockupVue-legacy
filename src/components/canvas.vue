@@ -1,12 +1,13 @@
 <template>
     <div class="mockupCanvas">
-        <mockupwidget v-for="mockupwidget in childMockupWidgets" v-draggable="true" :widgetdata="mockupwidget" ></mockupwidget>
+        <mockupwidget v-for="mockupwidget in childMockupWidgets" v-dropable="true" v-draggable="true" :widgetdata="mockupwidget" ></mockupwidget>
     </div>
 </template>
 
 <script>
 import mockupwidget from './mockupWidget.vue'
 import draggable from '../directives/directive-draggable.js';
+import dropable from '../directives/directive-dropable.js';
 
 
 export default {
@@ -17,7 +18,8 @@ export default {
     //not ideal. Draggables are only for <mockupwidget> but I need to call it here since
     //I create a mockupwidget in the canvas' template.
     directives:{
-        'draggable':draggable
+        'draggable':draggable,
+        'dropable':dropable
     },
     computed:{
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
@@ -42,7 +44,7 @@ export default {
 </script>
 
 <style>
-#mockup{
+.mockupCanvas{
     width:1000px;
     height:1000px;
     position: absolute;

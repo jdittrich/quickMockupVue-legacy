@@ -32,9 +32,6 @@ export default Vue.directive('draggable',{
             target.setAttribute("data-xpos",x);
             target.setAttribute("data-ypos",y);
         },
-        onend:function(){
-            
-        }
     });
   },
   update: function (newValue, oldValue) {

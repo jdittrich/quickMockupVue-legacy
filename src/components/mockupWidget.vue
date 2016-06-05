@@ -11,6 +11,7 @@
             v-if="childMockupWidgets.length > 0"
             v-for="mockupwidget in childMockupWidgets"
             v-draggable="true"
+            v-dropable="true"
             :widgetdata="mockupwidget"
             ></mockupwidget>
     </div>
@@ -21,6 +22,7 @@
 // braucht mixin drop für children
 import widgettemplate from './widgetTemplate.vue';
 import draggable from '../directives/directive-draggable.js';
+import dropable from '../directives/directive-dropable.js';
 
 export default {
     name:"mockupwidget",
@@ -28,7 +30,8 @@ export default {
         widgetdata:Object
     },
     directives:{
-        'draggable':draggable
+        'draggable':draggable,
+        'dropable':dropable
     },
     components:{
         widgettemplate:widgettemplate
@@ -58,5 +61,6 @@ export default {
 .mockupwidget{
     border:1px solid rgba(0,0,0,0.5);
     margin-left:0.25em;
+    width:20em;
 }
 </style>
