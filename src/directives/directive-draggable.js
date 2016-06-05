@@ -21,11 +21,15 @@ export default Vue.directive('draggable',{
         autoscroll:true,
         onmove:function(e){
             //TODO: fix: which element should be controled? target, Interactable etc
-            console.log("event:",e);
+
+            //console.log("event:",e);
             var target = e.target;
             var x = (parseFloat(target.getAttribute('data-xpos')) || 0) + e.dx;
             var y = (parseFloat(target.getAttribute('data-ypos')) || 0) + e.dy;
-            console.log("x,y,",x,"/",y);
+
+
+            //console.log("x,y,",x,"/",y);
+
             target.style.top = y+"px";
             target.style.left = x+"px";
 

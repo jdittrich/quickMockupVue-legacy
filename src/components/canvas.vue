@@ -1,6 +1,15 @@
 <template>
     <div class="mockupCanvas">
-        <mockupwidget v-for="mockupwidget in childMockupWidgets" v-dropable="true" v-draggable="true" :widgetdata="mockupwidget" ></mockupwidget>
+        <mockupwidget
+            v-for="mockupwidget in childMockupWidgets"
+
+            v-dropable="true"
+            v-draggable="true"
+            v-resizable="true"
+
+            :widgetdata="mockupwidget"
+            
+            ></mockupwidget>
     </div>
 </template>
 
@@ -8,6 +17,8 @@
 import mockupwidget from './mockupWidget.vue'
 import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
+import resizable from '../directives/directive-resizable.js';
+
 
 
 export default {
@@ -19,7 +30,8 @@ export default {
     //I create a mockupwidget in the canvas' template.
     directives:{
         'draggable':draggable,
-        'dropable':dropable
+        'dropable':dropable,
+        'resizable':resizable
     },
     computed:{
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
