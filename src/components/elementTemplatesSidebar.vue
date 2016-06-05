@@ -1,13 +1,10 @@
 <template>
   <div class="sidebar">
-      <widgettemplate v-for="template in allWidgetTemplates" :templatestring="template.template" :templatename="template.name"></widgettemplate>
+      <widgettemplate v-for="template in allWidgetTemplates" :templatename="template.name"></widgettemplate>
   </div>
 </template>
 
 <script>
-//generate the dynamic templates here.
-//create mixin elsewhere
-//mixin the mixin
 
 import widgettemplate from './widgetTemplate.vue'
 
