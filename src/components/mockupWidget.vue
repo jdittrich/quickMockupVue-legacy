@@ -1,5 +1,5 @@
 <template>
-<div class="mockupwidget">
+<div class="mockupwidget" style="width:200px; height:200px"> <!-- get rid of the style. It is there because if .width was not set, there was trouble in getting the resize script working -->
     <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>-->
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
     <div class="widgetChildren">
@@ -10,8 +10,11 @@
         <mockupwidget
             v-if="childMockupWidgets.length > 0"
             v-for="mockupwidget in childMockupWidgets"
+
             v-draggable="true"
             v-dropable="true"
+            v-resizable="true"
+
             :widgetdata="mockupwidget"
             ></mockupwidget>
     </div>
@@ -23,6 +26,7 @@
 import widgettemplate from './widgetTemplate.vue';
 import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
+import resizable from '../directives/directive-resizable.js';
 
 export default {
     name:"mockupwidget",
@@ -31,7 +35,8 @@ export default {
     },
     directives:{
         'draggable':draggable,
-        'dropable':dropable
+        'dropable':dropable,
+        'resizable':resizable
     },
     components:{
         widgettemplate:widgettemplate
