@@ -28,6 +28,8 @@ import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
 import resizable from '../directives/directive-resizable.js';
 
+//todo: make it have a public ID and children array, so canvas and mockupwidget expose the same api for moving elements in the data structure
+
 export default {
     name:"mockupwidget",
     props:{

@@ -8,7 +8,7 @@
             v-resizable="true"
 
             :widgetdata="mockupwidget"
-            
+
             ></mockupwidget>
     </div>
 </template>
@@ -23,6 +23,8 @@ import resizable from '../directives/directive-resizable.js';
 
 export default {
     //possible TODO: canvas and widget use the same childMockupWidgets and allwidgets methods: Componentize.
+    //todo: make it have a public ID and children array, so canvas and mockupwidget expose the same api for moving elements in the data structure
+
     components:{
         "mockupwidget":mockupwidget
     },
@@ -40,7 +42,7 @@ export default {
 					return that.canvasdata.children.includes(element._id)
 				})
 				return childwidgets;
-			}
+			},
 		},
     vuex:{
         getters: {
