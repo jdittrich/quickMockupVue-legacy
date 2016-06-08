@@ -12,13 +12,18 @@ export default Vue.directive('draggable',{
     // that needs to be run only once
     var that = this;
     var el = that.el;
-    console.log("that", that);
+    console.log("that", that, that.vm);
 
     el.style.position = "absolute";
 
     interact(el)
       .draggable({
         autoscroll:true,
+        onstart:function(e){
+            //debugger;
+            e.interactable.model = that.vm.el;
+            console.log("thatim",that,that.vm.el);
+        },
         onmove:function(e){
             //TODO: fix: which element should be controled? target, Interactable etc
 
