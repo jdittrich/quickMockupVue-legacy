@@ -19,7 +19,7 @@ export default Vue.directive('dropable',{
     interact(el)
         .dropzone({
             ondrop: function (e) {
-                console.log(e)
+                console.log(e);
             },
             //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)
             overlap: 1,

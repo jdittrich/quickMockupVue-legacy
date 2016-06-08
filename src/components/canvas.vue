@@ -8,7 +8,7 @@
             v-resizable="true"
 
             :widgetdata="mockupwidget"
-            
+
             ></mockupwidget>
     </div>
 </template>
@@ -37,7 +37,7 @@ export default {
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
 				var that = this;
 				var childwidgets = this.allwidgets.filter(function(element, index, array){
-					return that.canvasdata.children.includes(element._id)
+					return that.widgetdata.children.includes(element._id)
 				})
 				return childwidgets;
 			}
@@ -47,7 +47,7 @@ export default {
             allwidgets(state){
                 return state.mockupwidgets;
             },
-            canvasdata(state){
+            widgetdata(state){
                 return state.canvas;
             }
         }

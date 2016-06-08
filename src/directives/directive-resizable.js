@@ -25,43 +25,15 @@ export default Vue.directive('resizable',{
                 var edges = e.edges;
 
                 /*there are two even properties, rect and deltaRect
-                rect is the element's dimensions and position against the viewport (without scrolling!)
-                deltaRect
-                */
-                // console.log("resize",parseInt(e.rect.width),parseInt(e.rect.height),parseInt(e.rect.top),parseInt(e.rect.right),parseInt(e.rect.bottom) , parseInt(e.rect.left), "diff",parseInt(e.deltaRect.width),parseInt(e.deltaRect.height),parseInt(e.deltaRect.top),parseInt(e.deltaRect.right),parseInt(e.deltaRect.bottom),parseInt(e.deltaRect.left));
-                console.log("w",e.target.style.width,"r",e.deltaRect.right);
-                //debugger;
+                rect is the element's dimensions and position against the viewport (without scrolling!)*/
+
+
                 e.target.style.top    = (parseInt(e.target.style.top)||0) + e.deltaRect.top + "px";
                 e.target.style.left   = (parseInt(e.target.style.left)||0) + e.deltaRect.left  +"px";
                 e.target.style.width  = (parseInt(e.target.style.width)||0) + e.deltaRect.width +"px";
                 e.target.style.height = (parseInt(e.target.style.height)||0) + e.deltaRect.height +"px";
 
-                // if(edges.top===true){
-                //     //change top,Math.parseInt(
-                //     //change height
-                // }
-                //
-                // if(edges.right===true){
-                //     //keep left,
-                //     //change width
-                // }
-                //
-                // if(edges.buttom===true){
-                //     //keep top,
-                //     //change height
-                // }
-                //
-                // if(edges.left===true){
-                //
-                //     //change left,
-                //     //change width
-                // }
 
-
-                // e.target.style.left=
-                // e.target.style.top =
-                // e.target.style.width=
-                // e.target.style.height=
             }
         });
 
