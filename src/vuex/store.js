@@ -23,11 +23,11 @@ const mutations = {
 		//copy element over to tempelement
 	},*/
 	ATTACH(state,parentElement,newElement){ //TODO second
-		var newChildsId = newElement._id;
+		var newChildsId = newElement.l_id;
 		parentElement.children.push(newChildsId);
 	},
 	DETACH(state,oldParent,elementToDetach){
-		var id = elementToDetach._id;
+		var id = elementToDetach.l_id;
 		oldParent.children.$remove(id);
 
 	},

@@ -11,10 +11,11 @@ export default  { //should there be a var?
 		}
 	],
 	canvas:{
-    dimensions:{x:1000,y:1000},
-    content:{},
-    children:["1","2"]
-	},
+	    dimensions:{x:1000,y:1000},
+	    content:{},
+	    children:["1","2"]
+		l_id
+		},
 	mockupwidgets:[
         {
             position:{x:0,y:0},
@@ -22,9 +23,9 @@ export default  { //should there be a var?
             content:{
                 text:"I AM Canvas!",
             },
-            _id:"0",
+            l_id:"0",
             children:["1","2"],
-            widgetType:"button"
+            widgetType:"canvas"
         },
         {
             position:{x:0,y:0},
@@ -32,7 +33,7 @@ export default  { //should there be a var?
             content:{
                  text:"eins",
             },
-            _id:"1",
+            l_id:"1",
             children:["3"],
             widgetType: "window",
         },
@@ -42,7 +43,7 @@ export default  { //should there be a var?
             content:{
                 text:"zwei",
             },
-            _id:"2",
+            l_id:"2",
             children:[],
             widgetType: "window"
         },
@@ -52,7 +53,7 @@ export default  { //should there be a var?
             content:{
                 text:"drei",
             },
-            _id:"3",
+            l_id:"3",
             children:[],
             widgetType:"button"
         },

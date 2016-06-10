@@ -1,5 +1,14 @@
 <template>
     <div class="mockupCanvas">
+    {{widgetdata | json}}
+        <!-- there are several things named "mockupwidget":
+        1) the component ("<mockupwidget> and the imported variable of
+        the same name in the script part of the component)
+
+        2) the data for the mockupwidgets that are children
+        of the current component in the v-for loop and the
+        <mockupwidget> component, bound to :widgetdata
+        -->
         <mockupwidget
             v-for="mockupwidget in childMockupWidgets"
 
@@ -22,7 +31,6 @@ import resizable from '../directives/directive-resizable.js';
 
 
 export default {
-    //possible TODO: canvas and widget use the same childMockupWidgets and allwidgets methods: Componentize.
     //todo: make it have a public ID and children array, so canvas and mockupwidget expose the same api for moving elements in the data structure
 
     components:{
@@ -39,7 +47,7 @@ export default {
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
 				var that = this;
 				var childwidgets = this.allwidgets.filter(function(element, index, array){
-					return that.widgetdata.children.includes(element._id)
+					return that.widgetdata.children.includes(element.l_id)
 				})
 				return childwidgets;
 			},

@@ -9,6 +9,12 @@ import mockupcanvas from './canvas.vue';
 import dropable from '../directives/directive-dropable.js'
 // braucht mixin drop für children
 
+//TODO: seemingly, the dropable-directive of canvas has:
+// el: mockupcanvas
+// but vm.$el : mockupwrapper.
+// Y, but Y?
+
+
 export default {
     directives:{
         'dropable':dropable

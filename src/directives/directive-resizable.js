@@ -35,6 +35,7 @@ export default Vue.directive('resizable',{
 
 
             }
+            //onmovestop (or so): trigger change of position, trigger change of size (together as sizechange or so?)
         });
 
 
