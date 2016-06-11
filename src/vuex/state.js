@@ -8,14 +8,17 @@ export default  { //should there be a var?
 		{
 			name:"window",
 			templatestring:"<div>WINDOW, I AM, <strong>YODA</strong>, TOO, I AM</div>"
+		},
+		{
+			name:"canvas",
+			templatestring:"<div>CANVAS!</div>"
 		}
 	],
-	canvas:{
-	    dimensions:{x:1000,y:1000},
-	    content:{},
-	    children:["1","2"]
-		l_id
-		},
+	// canvas:{
+	//     dimensions:{x:1000,y:1000},
+	//     content:{},
+	//     children:["1","2"],
+	// 	},
 	mockupwidgets:[
         {
             position:{x:0,y:0},
