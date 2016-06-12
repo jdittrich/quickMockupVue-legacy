@@ -1,5 +1,5 @@
 <template>
-    <div class="mockupCanvas">
+    <div class="mockupCanvas" v-dropable="true">
     {{widgetdata | json}}
         <!-- there are several things named "mockupwidget":
         1) the component ("<mockupwidget> and the imported variable of
@@ -11,10 +11,6 @@
         -->
         <mockupwidget
             v-for="mockupwidget in childMockupWidgets"
-
-            v-dropable="true"
-            v-draggable="true"
-            v-resizable="true"
 
             :widgetdata="mockupwidget"
 
@@ -58,7 +54,11 @@ export default {
                 return state.mockupwidgets;
             },
             widgetdata(state){
-                return state.canvas;
+                var canvasdata = state.mockupwidgets.find(function(element, index, array){
+					return element.l_id == 0;
+				})
+                console.log(canvasdata);
+                return canvasdata;
             }
         }
     }

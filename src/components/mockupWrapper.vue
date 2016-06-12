@@ -1,18 +1,14 @@
 <template>
     <div class="mockupWrapper">
-        <!-- <mockupcanvas v-dropable="true"></mockupcanvas>-->
-        <mockupwidget
-            v-dropable="true"
-            :widgetdata="canvasdata"
-            ></mockupwidget>
+        <mockupcanvas v-dropable="true"></mockupcanvas>
     </div>
 </template>
 
 <script>
-//import mockupcanvas from './canvas.vue';
+import mockupcanvas from './canvas.vue';
 import dropable from '../directives/directive-dropable.js'
 
-import mockupwidget from './mockupWidget.vue'
+//import mockupwidget from './mockupWidget.vue'
 // braucht mixin drop für children
 
 //TODO: seemingly, the dropable-directive of canvas has:
@@ -26,19 +22,19 @@ export default {
         'dropable':dropable
     },
     components: {
-        //'mockupcanvas':mockupcanvas,
-        'mockupwidget':mockupwidget
+        'mockupcanvas':mockupcanvas,
+        //'mockupwidget':mockupwidget
     },
-    vuex:{
-        getters: {
-            canvasdata(state){
-                var canvas = state.mockupwidgets.find(function(element, index, array){
-                    return element.l_id == 0; //deliberately no === so number and string work
-                });
-                return canvas;
-            }
-        }
-    }
+    // vuex:{
+    //     getters: {
+    //         canvasdata(state){
+    //             var canvas = state.mockupwidgets.find(function(element, index, array){
+    //                 return element.l_id == 0; //deliberately no === so number and string work
+    //             });
+    //             return canvas;
+    //         }
+    //     }
+    // }
 
 }
 </script>
