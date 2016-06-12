@@ -1,7 +1,9 @@
 <template>
-<div class="mockupwidget" v-bind:style="{width:widgetdata.dimensions.width; height:widgetdata.dimensions.height}"> <!-- get rid of the style. It is there because if .width was not set, there was trouble in getting the resize script working -->
+<div class="mockupwidget" v-bind:style="{ width: widgetdata.dimensions.x + 'px', height:widgetdata.dimensions.y+'px'}"> <!-- get rid of the style. It is there because if .width was not set, there was trouble in getting the resize script working -->
     <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
+
+    {{widgetdata.dimensions.x+'px'}}{{widgetdata.dimensions.y+'px'}}
     <div class="widgetChildren">
 
 
@@ -74,6 +76,6 @@ export default {
 .mockupwidget{
     border:1px solid rgba(0,0,0,0.5);
     margin-left:0.25em;
-    width:20em;
+    /*width:20em;*/
 }
 </style>
