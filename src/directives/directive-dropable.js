@@ -18,19 +18,12 @@ export default Vue.directive('dropable',{
     interact(el)
         .dropzone({
             ondrop: function (e) {
-                 //console.log("this",this)
-                // console.log("drop",e.target.__vue__)
-                console.log("drop",e.target.__vue__.widgetdata)
-                //
-                // //=get IDs==
-                // // what is this elements ID?
-                console.log("droppedOnThis:",that)
-                // var newParentId = that.widgetdata.l_id;
-                //
-                // // what is the dropped elements ID?
 
-                //console.log("was dropped",e.target.__vue__.widgetdata.l_id);
-                // var newChildId = e.target.__vue__.widgetdata.l_id;
+                console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
+                console.log("dropped on",e.target.__vue__.widgetdata.l_id)
+
+                var recievedDropId = e.target.__vue__.widgetdata.l_id
+                var didDropId = e.relatedTarget.__vue__.widgetdata.l_id
 
                 // find out how the drop el is positioned vs. your el (client rect?)
                 // calculate new position
