@@ -1,8 +1,25 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import state from './state.js'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import state from './state.js';
+
 
 Vue.use(Vuex);
+
+function helperIdToObject(elements, id){
+	var element = elements.find(function(element){
+		return element.l_id === id;
+	});
+	return element;
+}
+
+function helperFindParentObject(possibleParents, childElement){
+	var parent = possibleParents.find(function(possibleParent){
+		return possibleParent.children.includes(childElement.l_id);
+	});
+	return parent;
+}
+
+
 
 const mutations = {
 	ADDELEMENT(state, text) { // first
@@ -14,27 +31,59 @@ const mutations = {
 	DELETEELEMENT(state, element){ // first
 		//see https://github.com/vuejs/vuex/blob/master/examples/todomvc/vuex/store.js
 		//state.elements.$remove(element);
+		var elementsToRemove = [];
 
-		//also: delete all children referring to it.
+		var parent = helperFindParentObject(state.elements,element);
+		parent.children.$remove(element.l_id);
 
-		state.elements.$remove(element)
+		elementsToRemove = [];
+
+		//this adds all children to an array, so they can be removed
+		//we dont need to collect ids referring to removed elements
+		//since only parents can refer to childs - they all
+		//be removed anyway.
+		var collectChildren = function(startElement){
+			elementsToRemove.push(element);
+			startElement.children.forEach(function(childl_id,index,array){
+				var childElement = helperIdToObject(element);
+				collectChildren(element);
+			});
+		};
+
+		//actuall remove
+		elementsToRemove.forEach(function(element,index,array){
+			state.elements.$remove(element);
+		});
 	},
 	/*TOTEMP(state,element){ //TODO second
 		//copy element over to tempelement
 	},*/
-	ATTACH(state,parentElement,newElement){ //TODO second
-		var newChildsId = newElement.l_id;
-		parentElement.children.push(newChildsId);
-	},
-	DETACH(state,oldParent,elementToDetach){
-		var id = elementToDetach.l_id;
-		oldParent.children.$remove(id);
-
-	},
+	// ATTACH(state,parentElement,newElement){ //TODO second
+	// 	var newChildsId = newElement.l_id;
+	// 	parentElement.children.push(newChildsId);
+	// },
+	// DETACH(state,oldParent,elementToDetach){
+	// 	var id = elementToDetach.l_id;
+	// 	oldParent.children.$remove(id);
+	//
+	// },
 	CHANGENAME(state,element,newName){ //TODO third
 		element.text = newName;
+	},
+	MOVEWIDGET(state,elementToMoveId,futureParentId){
+		var elementToMove = helperIdToObject(state.elements,elementToMoveId);
+		var currentParent = helperFindParentObject(state.elements,elementToMove);
+		var futureParent = helperIdToObject(state.elements, futureParentId);
+
+		currentParent.children.$remove(elementToMoveId);
+		futureParent.children.push(elementToMoveId);
+		// store.dispatch("DETACH",currentParent,elementToMove);
+		// store.dispatch("ATTACH",futureParent,elementToMove);
+	},
+	CHANGERECT(state,rect){
+		
 	}
-}
+};
 
 
 export default new Vuex.Store({
@@ -42,5 +91,3 @@ export default new Vuex.Store({
 	mutations:mutations,
 	strict: true
 });
-
-

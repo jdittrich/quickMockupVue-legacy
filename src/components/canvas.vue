@@ -1,4 +1,4 @@
-<template>
+atom<template>
     <div class="mockupCanvas" v-dropable="true">
     {{widgetdata | json}}
         <!-- there are several things named "mockupwidget":

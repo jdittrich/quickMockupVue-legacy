@@ -28,11 +28,12 @@ export  function deleteElement(store,element){
 }
 
 export function changeRect(store, element, changedRect){
+	store.dispatch("CHANGERECT",element,changedRect);
 	/*naming is hard here. First I had seperate position/dimension functions, but if the user e.g. changes the width to the right, I need adjust the position as well */
 }
 
 export  function moveElement(store,elementToMoveId,futureParentId){
-
+	store.dispatch("MOVEWIDGET",elementToMoveId,futureParentId)
 	var elementToMove = helperIdToObject(store.state.elements,elementToMoveId);
 	var currentParent = helperFindParentObject(store.state.elements,elementToMove);
 	var futureParent = helperIdToObject(store.state.elements, futureParentId);

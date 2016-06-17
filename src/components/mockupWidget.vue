@@ -1,11 +1,14 @@
 <template>
 <div class="mockupwidget" v-bind:style="{ width: widgetdata.dimensions.x + 'px', height:widgetdata.dimensions.y+'px'}"
 
+if(this)
 v-draggable="true"
 v-dropable="true"
 v-resizable="true"
 
-> <!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
+>
+<!-- todo -->
+<!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
     <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
 

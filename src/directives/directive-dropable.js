@@ -2,6 +2,7 @@
 import interact from 'interact.js';
 import Vue from 'vue';
 
+
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
 
@@ -22,14 +23,21 @@ export default Vue.directive('dropable',{
                 console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
                 console.log("dropped on",e.target.__vue__.widgetdata.l_id)
 
-                var recievedDropId = e.target.__vue__.widgetdata.l_id
-                var didDropId = e.relatedTarget.__vue__.widgetdata.l_id
+                var targetId = e.target.__vue__.widgetdata.l_id
+                var droppedId = e.relatedTarget.__vue__.widgetdata.l_id
 
                 // find out how the drop el is positioned vs. your el (client rect?)
-                // calculate new position
+                var targetRect = e.target.getClientRects()[0];
+                var droppedRect = e.relatedTarget.getClientRects()[0];
+
+                var droppedNewPos = {
+                    top: droppedRect.top - targetRect.top,
+                    left: droppedRect.left - targetRect.left
+                };
 
                 // trigger position change of new element
                 // trigger to move dropped element to this.el
+
             },
             //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)
             overlap: 1,

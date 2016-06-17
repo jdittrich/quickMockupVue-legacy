@@ -21,8 +21,12 @@ export default  { //should there be a var?
 	// 	},
 	mockupwidgets:[
         {
-            position:{x:0,y:0},
-            dimensions:{x:1000,y:1000},
+            rect:{
+  				top:0,
+				left:0,
+            	width:1000,
+				height:1000
+			},
             content:{
                 text:"I AM Canvas!",
             },
@@ -31,8 +35,12 @@ export default  { //should there be a var?
             widgetType:"canvas"
         },
         {
-            position:{x:0,y:0},
-            dimensions:{x:100,y:100},
+            rect:{
+				top:0,
+				left:0,
+      			width:100,
+				height:100
+			},
             content:{
                  text:"eins",
             },
@@ -41,8 +49,12 @@ export default  { //should there be a var?
             widgetType: "window",
         },
         {
-            position:{x:0,y:0},
-            dimensions:{x:100,y:100},
+            rect:{
+				top:0,
+				left:0,
+      			width:100,
+	  			height:100
+			},
             content:{
                 text:"zwei",
             },
@@ -51,8 +63,12 @@ export default  { //should there be a var?
             widgetType: "window"
         },
         {
-            position:{x:0,y:0},
-            dimensions:{x:100,y:100},
+            rect:{
+				top:0,
+				left:0,
+      			width:100,
+				height:100
+			},
             content:{
                 text:"drei",
             },
