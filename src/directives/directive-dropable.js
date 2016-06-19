@@ -2,7 +2,7 @@
 import interact from 'interact.js';
 import Vue from 'vue';
 
-import {moveWidget} from '../vuex/actions.js';
+import {moveWidget,changeRect} from '../vuex/actions.js';
 
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
@@ -21,8 +21,8 @@ export default Vue.directive('dropable',{
         .dropzone({
             ondrop: function (e) {
 
-                console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
-                console.log("dropped on",e.target.__vue__.widgetdata.l_id)
+                // console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
+                // console.log("dropped on",e.target.__vue__.widgetdata.l_id)
 
                 var targetId = e.target.__vue__.widgetdata.l_id
                 var droppedId = e.relatedTarget.__vue__.widgetdata.l_id
@@ -41,7 +41,8 @@ export default Vue.directive('dropable',{
                 //change parent if dropped from another element
                 moveWidget(that.vm.$store, droppedId,targetId); //this.vm.$store is not ideal (http://vuex.vuejs.org/en/actions.html)
 
-                //changeRect(droppedId,droppedNewPos);
+                console.log("newpos",droppedNewPos);
+                changeRect(that.vm.$store,droppedId,droppedNewPos);
 
 
             },

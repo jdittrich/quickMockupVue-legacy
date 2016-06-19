@@ -12,7 +12,7 @@ export default Vue.directive('draggable',{
     // that needs to be run only once
     var that = this;
     var el = that.el;
-    console.log("that", that, that.vm);
+    //console.log("that", that, that.vm);
 
     el.style.position = "absolute";
 
@@ -21,25 +21,25 @@ export default Vue.directive('draggable',{
         autoscroll:true,
         onstart:function(e){
             //debugger;
-            e.interactable.model = that.vm.el;
-            console.log("thatim",that,that.vm.el);
+            //e.interactable.model = that.vm.el;
+            //console.log("thatim",that,that.vm.el);
         },
         onmove:function(e){
             //TODO: fix: which element should be controled? target, Interactable etc
 
             //console.log("event:",e);
             var target = e.target;
-            var x = (parseFloat(target.getAttribute('data-xpos')) || 0) + e.dx;
-            var y = (parseFloat(target.getAttribute('data-ypos')) || 0) + e.dy;
+            // var x = (parseFloat(target.getAttribute('data-xpos')) || 0) + e.dx;
+            // var y = (parseFloat(target.getAttribute('data-ypos')) || 0) + e.dy;
 
 
             //console.log("x,y,",x,"/",y);
 
-            target.style.top = y+"px";
-            target.style.left = x+"px";
+            target.style.top = parseInt(target.style.top) + e.dy+"px";
+            target.style.left = parseInt(target.style.left) + e.dx+"px";
 
-            target.setAttribute("data-xpos",x);
-            target.setAttribute("data-ypos",y);
+            // target.setAttribute("data-xpos",x);
+            // target.setAttribute("data-ypos",y);
         },
     });
   },
@@ -53,7 +53,7 @@ export default Vue.directive('draggable',{
     // e.g. remove event listeners added in bind()
     interact(this.el).unset();
   }
-})
+});
 
 function dragmoveListener(){
 

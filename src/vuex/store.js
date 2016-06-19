@@ -85,8 +85,11 @@ const mutations = {
 		if(typeof element !== "object"){
 			element = helperIdToObject(state.mockupwidgets,element);
 		}
-
-		//.
+		console.log("rect",rect);
+		element.rect.top    = rect.top    || element.rect.top;
+		element.rect.left   = rect.left   || element.rect.left;
+		element.rect.width  = rect.width  || element.rect.width;
+		element.rect.height = rect.height || element.rect.height;
 	}
 };
 

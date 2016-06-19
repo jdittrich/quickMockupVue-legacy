@@ -1,5 +1,11 @@
 <template>
-<div class="mockupwidget" v-bind:style="{ width: widgetdata.rect.width + 'px', height:widgetdata.rect.height+'px'}"
+<div class="mockupwidget"
+    v-bind:style="{
+        width: widgetdata.rect.width + 'px',
+        height:widgetdata.rect.height+'px',
+        left:widgetdata.rect.left+'px',
+        top:widgetdata.rect.top+'px'
+        }"
 
 if(this)
 v-draggable="true"
@@ -81,8 +87,7 @@ export default {
 
 <style>
 .mockupwidget{
-    border:1px solid rgba(0,0,0,0.5);
-    margin-left:0.25em;
+    outline:1px solid rgba(0,0,0,0.5);
     /*width:20em;*/
 }
 </style>
