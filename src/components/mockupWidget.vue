@@ -1,5 +1,5 @@
 <template>
-<div class="mockupwidget" v-bind:style="{ width: widgetdata.dimensions.x + 'px', height:widgetdata.dimensions.y+'px'}"
+<div class="mockupwidget" v-bind:style="{ width: widgetdata.rect.width + 'px', height:widgetdata.rect.height+'px'}"
 
 if(this)
 v-draggable="true"
@@ -12,7 +12,7 @@ v-resizable="true"
     <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
 
-    {{widgetdata.dimensions.x+'px'}}{{widgetdata.dimensions.y+'px'}}
+    {{widgetdata.rect.width+'px'}}{{widgetdata.rect.height+'px'}}
     <div class="widgetChildren">
 
 

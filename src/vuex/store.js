@@ -50,7 +50,7 @@ const mutations = {
 			});
 		};
 
-		//actuall remove
+		//actually remove
 		elementsToRemove.forEach(function(element,index,array){
 			state.elements.$remove(element);
 		});
@@ -71,17 +71,22 @@ const mutations = {
 		element.text = newName;
 	},
 	MOVEWIDGET(state,elementToMoveId,futureParentId){
-		var elementToMove = helperIdToObject(state.elements,elementToMoveId);
-		var currentParent = helperFindParentObject(state.elements,elementToMove);
-		var futureParent = helperIdToObject(state.elements, futureParentId);
+		//console.log("state",state);
+		var elementToMove = helperIdToObject(state.mockupwidgets,elementToMoveId);
+		var currentParent = helperFindParentObject(state.mockupwidgets,elementToMove);
+		var futureParent = helperIdToObject(state.mockupwidgets, futureParentId);
 
 		currentParent.children.$remove(elementToMoveId);
 		futureParent.children.push(elementToMoveId);
 		// store.dispatch("DETACH",currentParent,elementToMove);
 		// store.dispatch("ATTACH",futureParent,elementToMove);
 	},
-	CHANGERECT(state,rect){
-		
+	CHANGERECT(state,element,rect){
+		if(typeof element !== "object"){
+			element = helperIdToObject(state.mockupwidgets,element);
+		}
+
+		//.
 	}
 };
 

@@ -2,6 +2,7 @@
 import interact from 'interact.js';
 import Vue from 'vue';
 
+import {moveWidget} from '../vuex/actions.js';
 
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
@@ -35,8 +36,13 @@ export default Vue.directive('dropable',{
                     left: droppedRect.left - targetRect.left
                 };
 
-                // trigger position change of new element
-                // trigger to move dropped element to this.el
+                //create a new element if dropped from sidebar
+                //console.log("MW",moveWidget);
+                //change parent if dropped from another element
+                moveWidget(that.vm.$store, droppedId,targetId); //this.vm.$store is not ideal (http://vuex.vuejs.org/en/actions.html)
+
+                //changeRect(droppedId,droppedNewPos);
+
 
             },
             //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)
