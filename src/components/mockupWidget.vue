@@ -66,7 +66,7 @@ export default {
     },
     computed:{
       childMockupWidgets(){ //uses ids to get the children's objects as values.
-        console.log("this, this.wd",this,this.widgetdata)
+        //console.log("this, this.wd",this,this.widgetdata)
         var that = this;
         var childwidgets = this.allwidgets.filter(function(element, index, array){
           //console.log("childwidgets", that)

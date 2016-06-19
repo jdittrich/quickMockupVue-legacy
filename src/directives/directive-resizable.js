@@ -44,7 +44,7 @@ export default Vue.directive('resizable',{
                 e.target.style.height = newRect.height +"px";
 
                 //apply to database
-                console.log(newRect);
+                console.log(newRect,that.vm.widgetdata.l_id);
                 changeRect(that.vm.$store,that.vm.widgetdata.l_id,newRect);
 
             }
