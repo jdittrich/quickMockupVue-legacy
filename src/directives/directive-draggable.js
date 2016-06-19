@@ -34,10 +34,10 @@ export default Vue.directive('draggable',{
 
 
             //console.log("x,y,",x,"/",y);
-
-            target.style.top = parseInt(target.style.top) + e.dy+"px";
-            target.style.left = parseInt(target.style.left) + e.dx+"px";  
-
+            console.log(parseInt(target.style.left),"d", e.dx);
+            target.style.top = (parseInt(target.style.top)||0) + e.dy+"px";
+            target.style.left = (parseInt(target.style.left)||0) + e.dx+"px";
+            console.log("left:", target.style.left);
             // target.setAttribute("data-xpos",x);
             // target.setAttribute("data-ypos",y);
         },

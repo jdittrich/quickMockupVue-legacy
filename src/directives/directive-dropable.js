@@ -2,7 +2,7 @@
 import interact from 'interact.js';
 import Vue from 'vue';
 
-import {moveWidget,changeRect} from '../vuex/actions.js';
+import {moveWidget,changeRect,addElement} from '../vuex/actions.js';
 
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
@@ -24,8 +24,9 @@ export default Vue.directive('dropable',{
                 // console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
                 // console.log("dropped on",e.target.__vue__.widgetdata.l_id)
 
-                var targetId = e.target.__vue__.widgetdata.l_id
-                var droppedId = e.relatedTarget.__vue__.widgetdata.l_id
+                // is this an OK way? Somehow, the __ say to me: "probably not"
+                var targetId = e.target.__vue__.widgetdata.l_id;
+
 
                 // find out how the drop el is positioned vs. your el (client rect?)
                 var targetRect = e.target.getClientRects()[0];
@@ -36,14 +37,25 @@ export default Vue.directive('dropable',{
                     left: droppedRect.left - targetRect.left
                 };
 
+                if(!e.relatedTarget.__vue__.widgetdata.l_id &&
+                    e.relatedTarget.__vue__.name &&
+                    e.relatedTarget.__vue__.templatestring){ //element is new and has attributes of a template
+
+                  console.log("newElementDropped!",e.relatedTarget.__vue__)
+                  var widgetType =  e.relatedTarget.__vue__.name;
+                  addElement(that.vm.$store,futureParentId,droppedNewPos,widgetType, );
+
+                } else { //...otherwise, element should be an existing element on canvas
+                  var droppedId = e.relatedTarget.__vue__.widgetdata.l_id;
+                  console.log("existing ElementDropped!",e.relatedTarget.__vue__)
                 //create a new element if dropped from sidebar
                 //console.log("MW",moveWidget);
                 //change parent if dropped from another element
                 moveWidget(that.vm.$store, droppedId,targetId); //this.vm.$store is not ideal (http://vuex.vuejs.org/en/actions.html)
 
-                console.log("newpos",droppedNewPos);
+                //console.log("newpos",droppedNewPos);
                 changeRect(that.vm.$store,droppedId,droppedNewPos);
-
+              }
 
             },
             //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)

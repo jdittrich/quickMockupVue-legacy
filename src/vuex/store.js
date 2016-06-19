@@ -22,11 +22,27 @@ function helperFindParentObject(possibleParents, childElement){
 
 
 const mutations = {
-	ADDELEMENT(state, text) { // first
-		var standardelement = {children:[],text:"",id:""};
-		standardelement.text= text;
-		standardelement.id = ""+Math.random();//poor mans (not very) UUID :-) replace with proper thing.later TODO4
-		state.elements.push(standardelement);
+	ADDELEMENT(state,futureParentId, rect,widgetType) {
+		var newElement = {
+			rect:{
+				top:rect.top,
+				left:rect.left,
+      			width:100,
+				height:100
+			},
+            content:{
+                 text:"",
+            },
+            l_id:null,
+            children:[],
+            widgetType: widgetType
+		};
+
+		newElement.l_id = ""+Math.random();//poor mans (not very) UUID :-) replace with proper thing.later TODO4
+		state.mockupwidgets.push(newElement);
+
+		var parent = helperFindParentObject(state.elements, futureParentId);
+		parent.children.push(newElement.l_id);
 	},
 	DELETEELEMENT(state, element){ // first
 		//see https://github.com/vuejs/vuex/blob/master/examples/todomvc/vuex/store.js

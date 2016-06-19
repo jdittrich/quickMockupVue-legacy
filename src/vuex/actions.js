@@ -17,8 +17,8 @@ function helperFindParentObject(possibleParents, childElement){
 
 //============actions============================
 
-export  function addElement(store,child){
-	store.dispatch("ADDELEMENT",child);
+export  function addElement(store,futureParentId,rect,widgettype){
+	store.dispatch("ADDELEMENT",futureParentId,rect,widgettype);
 }
 
 

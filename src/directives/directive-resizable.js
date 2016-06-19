@@ -16,6 +16,7 @@ export default Vue.directive('resizable',{
     // that needs to be run only once
     var that = this;
     var el = that.el;
+    var newRect= null;
 
     //console.log("bound drop");
     interact(el)
@@ -30,7 +31,7 @@ export default Vue.directive('resizable',{
                 rect is the element's dimensions and position against the viewport (without scrolling!)*/
 
                 //calculate new values for the widgets position and dimensions
-                var newRect = {
+                newRect = {
                   top: (parseInt(e.target.style.top)||0) + e.deltaRect.top,
                   left: (parseInt(e.target.style.left)||0) + e.deltaRect.left,
                   width:(parseInt(e.target.style.width)||0) + e.deltaRect.width,
@@ -44,10 +45,13 @@ export default Vue.directive('resizable',{
                 e.target.style.height = newRect.height +"px";
 
                 //apply to database
-                console.log(newRect,that.vm.widgetdata.l_id);
-                changeRect(that.vm.$store,that.vm.widgetdata.l_id,newRect);
 
+              },
+            onmovestop:function(e){
+              changeRect(that.vm.$store,that.vm.widgetdata.l_id,newRect);
+              console.log(newRect,that.vm.widgetdata.l_id);
             }
+
             //onmovestop (or so): trigger change of position, trigger change of size (together as sizechange or so?)!
         });
 

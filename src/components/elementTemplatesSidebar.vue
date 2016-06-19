@@ -1,12 +1,15 @@
 <template>
-  <div class="sidebar">
-      <widgettemplate v-for="template in allWidgetTemplates" :templatename="template.name"></widgettemplate>
-  </div>
+  <ul class="sidebar">
+      <li v-for="template in allWidgetTemplates" class="widgetTemplateListContainer">
+          <widgettemplate class="widgettemplate" v-for="template in allWidgetTemplates" :templatename="template.name" v-draggable="true"></widgettemplate>
+      <li>
+  </ul>
 </template>
 
 <script>
 
 import widgettemplate from './widgetTemplate.vue'
+import draggable from '../directives/directive-draggable.js';
 
 
 export default {
@@ -31,5 +34,15 @@ export default {
     position: absolute;
     top:0;
     left:0;
+}
+
+.widgettemplate{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.widgetTemplateListContainer{
+    position: relative;
 }
 </style>
