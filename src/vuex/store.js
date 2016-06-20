@@ -41,7 +41,7 @@ const mutations = {
 		newElement.l_id = ""+Math.random();//poor mans (not very) UUID :-) replace with proper thing.later TODO4
 		state.mockupwidgets.push(newElement);
 
-		var parent = helperFindParentObject(state.elements, futureParentId);
+		var parent = helperIdToObject(state.mockupwidgets, futureParentId);
 		parent.children.push(newElement.l_id);
 	},
 	DELETEELEMENT(state, element){ // first

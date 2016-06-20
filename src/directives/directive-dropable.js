@@ -37,13 +37,13 @@ export default Vue.directive('dropable',{
                     left: droppedRect.left - targetRect.left
                 };
 
-                if(!e.relatedTarget.__vue__.widgetdata.l_id &&
-                    e.relatedTarget.__vue__.name &&
+                if(!e.relatedTarget.__vue__.widgetdata &&
+                    e.relatedTarget.__vue__.templatename &&
                     e.relatedTarget.__vue__.templatestring){ //element is new and has attributes of a template
 
                   console.log("newElementDropped!",e.relatedTarget.__vue__)
-                  var widgetType =  e.relatedTarget.__vue__.name;
-                  addElement(that.vm.$store,futureParentId,droppedNewPos,widgetType, );
+                  var widgetType =  e.relatedTarget.__vue__.templatename;
+                  addElement(that.vm.$store,targetId,droppedNewPos,widgetType);
 
                 } else { //...otherwise, element should be an existing element on canvas
                   var droppedId = e.relatedTarget.__vue__.widgetdata.l_id;

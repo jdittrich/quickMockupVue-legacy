@@ -1,7 +1,7 @@
 <template>
   <ul class="sidebar">
       <li v-for="template in allWidgetTemplates" class="widgetTemplateListContainer">
-          <widgettemplate class="widgettemplate" v-for="template in allWidgetTemplates" :templatename="template.name" v-draggable="true"></widgettemplate>
+          <widgettemplate class="widgettemplate" v-for="template in allWidgetTemplates" :templatename="template.name" :templatestring="template.templatestring" v-draggable="true"></widgettemplate>
       <li>
   </ul>
 </template>
