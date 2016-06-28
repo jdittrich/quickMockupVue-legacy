@@ -1,5 +1,5 @@
 <template>
-  <div class="widgetTemplate">
+  <div class="widgetTemplate" v-draggable="true" cloneondrag="true">
       <partial :name="templatename"></partial>
 			<!-- possibly other stuff, but not yet -->
   </div>

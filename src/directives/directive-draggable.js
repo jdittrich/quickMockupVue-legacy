@@ -6,41 +6,82 @@ import Vue from 'vue';
 export default Vue.directive('draggable',{
   //we need a two way bind here to change the values from within the directives functions!
   twoWay:true, //? <-> or better just dispatch?
+  params: ['cloneondrag'],
   bind: function () {
     // do preparation work
     // e.g. add event listeners or expensive stuff
     // that needs to be run only once
     var that = this;
     var el = that.el;
-    //console.log("that", that, that.vm);
+    var shallClone = this.params.cloneondrag; //(that.params.cloneondrag === true) ? true : false;
+
+
 
     el.style.position = "absolute";
 
+
     interact(el)
+      .on("down", function(event){
+        console.log("down", shallClone,that);
+        var pos = event.target.getBoundingClientRect();
+        var interaction = event.interaction;
+        var interactable = event.interactable;
+
+        var startposEvt = {x:event.clientX, y:event.clientY};
+
+        interactable.startposEvt = startposEvt;
+        interactable.startposElem = {top:pos.top,left:pos.left};
+
+        //add data to transport
+        //TODO: get data on object
+        interactable.model = {
+          'l_id': (that.vm.widgetdata && that.vm.widgetdata.l_id)?that.vm.widgetdata.l_id:undefined,
+          'templatename' : that.vm.templatename,
+          'templatestring': that.vm.templatestring
+        };
+
+        if(shallClone && !interaction.interacting()){
+
+          var clonedElement = event.target.cloneNode(true);
+
+          clonedElement.style.position = "absolute";
+      		clonedElement.style.top = pos.top+"px";
+      		clonedElement.style.left = pos.left+"px";
+
+          document.body.appendChild(clonedElement);//TODO Minor: should be configurable
+          console.log("downstarted clone");
+          interaction.start({ name: 'drag' },
+            event.interactable,
+            clonedElement);
+        } else if(!interaction.interacting()){
+          console.log("downstarted normal");
+          interaction.start({ name: 'drag' },
+            event.interactable,
+            event.target);
+
+        }
+
+    		//ADD DATA
+        // event.interactable.model = "bla";
+      })
       .draggable({
+        manualStart:true,
         autoscroll:true,
-        onstart:function(e){
-            //debugger;
-            //e.interactable.model = that.vm.el;
-            //console.log("thatim",that,that.vm.el);
-        },
         onmove:function(e){
             //TODO: fix: which element should be controled? target, Interactable etc
+            var interaction = e.interaction;
+        		var target = e.target;
+        		var startposEvt = e.interactable.startposEvt;
+        		var startposElem = e.interactable.startposElem;
 
-            //console.log("event:",e);
-            var target = e.target;
-            // var x = (parseFloat(target.getAttribute('data-xpos')) || 0) + e.dx;
-            // var y = (parseFloat(target.getAttribute('data-ypos')) || 0) + e.dy;
-
-
-            //console.log("x,y,",x,"/",y);
-            console.log(parseInt(target.style.left),"d", e.dx);
-            target.style.top = (parseInt(target.style.top)||0) + e.dy+"px";
-            target.style.left = (parseInt(target.style.left)||0) + e.dx+"px";
-            console.log("left:", target.style.left);
-            // target.setAttribute("data-xpos",x);
-            // target.setAttribute("data-ypos",y);
+            target.style.top = startposElem.top + (e.clientY-startposEvt.y)+"px";
+        		target.style.left = startposElem.left + (e.clientX-startposEvt.x)+"px";
         },
+        onend: function (event) {
+          if(shallClone){
+    			   event.target.remove();
+          }
+    		}
     });
   },
   update: function (newValue, oldValue) {
@@ -54,14 +95,3 @@ export default Vue.directive('draggable',{
     interact(this.el).unset();
   }
 });
-
-function dragmoveListener(){
-
-
-};
-
-
-function dragendListener(){
-
-
-};

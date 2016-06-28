@@ -26,7 +26,7 @@ export default Vue.directive('dropable',{
 
                 // is this an OK way? Somehow, the __ say to me: "probably not"
                 var targetId = e.target.__vue__.widgetdata.l_id;
-
+                var model = e.draggable.model;
 
                 // find out how the drop el is positioned vs. your el (client rect?)
                 var targetRect = e.target.getClientRects()[0];
@@ -37,17 +37,17 @@ export default Vue.directive('dropable',{
                     left: droppedRect.left - targetRect.left
                 };
 
-                if(!e.relatedTarget.__vue__.widgetdata &&
-                    e.relatedTarget.__vue__.templatename &&
-                    e.relatedTarget.__vue__.templatestring){ //element is new and has attributes of a template
+                if(!model.l_id &&
+                    model.templatename &&
+                    model.templatestring){ //element is new and has attributes of a template
 
-                  console.log("newElementDropped!",e.relatedTarget.__vue__)
-                  var widgetType =  e.relatedTarget.__vue__.templatename;
+                  console.log("newElementDropped!",model)
+                  var widgetType =  model.templatename;
                   addElement(that.vm.$store,targetId,droppedNewPos,widgetType);
 
                 } else { //...otherwise, element should be an existing element on canvas
-                  var droppedId = e.relatedTarget.__vue__.widgetdata.l_id;
-                  console.log("existing ElementDropped!",e.relatedTarget.__vue__)
+                  var droppedId = model.l_id;
+                  console.log("existing ElementDropped!",model)
                 //create a new element if dropped from sidebar
                 //console.log("MW",moveWidget);
                 //change parent if dropped from another element
