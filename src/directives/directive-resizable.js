@@ -4,6 +4,9 @@ import Vue from 'vue';
 
 import {changeRect} from '../vuex/actions.js';
 
+import jquery from 'jquery';
+import jqueryui from '../libs/jquery-ui.js';
+
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
 
@@ -16,44 +19,9 @@ export default Vue.directive('resizable',{
     // that needs to be run only once
     var that = this;
     var el = that.el;
-    var newRect= null;
 
-    //console.log("bound drop");
-    interact(el)
-        .resizable({
-            preserveAspectRatio: false, //make this set-able via some modifier key or so.
-            edges: { left: true, right: true, bottom: true, top: true },
-            onmove: function(e){
-                //e.target.
-                var edges = e.edges;
 
-                /*there are two even properties, rect and deltaRect
-                rect is the element's dimensions and position against the viewport (without scrolling!)*/
-
-                //calculate new values for the widgets position and dimensions
-                newRect = {
-                  top: (parseInt(e.target.style.top)||0) + e.deltaRect.top,
-                  left: (parseInt(e.target.style.left)||0) + e.deltaRect.left,
-                  width:(parseInt(e.target.style.width)||0) + e.deltaRect.width,
-                  height: (parseInt(e.target.style.height)||0) + e.deltaRect.height
-                };
-
-                //apply styles in DOM
-                e.target.style.top    = newRect.top + "px";
-                e.target.style.left   = newRect.left  +"px";
-                e.target.style.width  = newRect.width +"px";
-                e.target.style.height = newRect.height +"px";
-
-                //apply to database
-
-              },
-            onmovestop:function(e){
-              changeRect(that.vm.$store,that.vm.widgetdata.l_id,newRect);
-              console.log(newRect,that.vm.widgetdata.l_id);
-            }
-
-            //onmovestop (or so): trigger change of position, trigger change of size (together as sizechange or so?)!
-        });
+    jquery(el).resizable();
 
 
   },

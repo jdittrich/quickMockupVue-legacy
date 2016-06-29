@@ -6,8 +6,7 @@
         left:widgetdata.rect.left+'px',
         top:widgetdata.rect.top+'px'
         }"
-
-if(this)
+        
 v-draggable="true"
 v-dropable="true"
 v-resizable="true"
