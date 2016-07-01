@@ -5,8 +5,6 @@ import Vue from 'vue';
 import jquery from 'jquery';
 import jqueryui from '../libs/jquery-ui.js';
 
-console.log(jquery,jqueryui);
-
 export default Vue.directive('draggable',{
   //we need a two way bind here to change the values from within the directives functions!
   twoWay:false, //? <-> or better just dispatch?
@@ -24,7 +22,10 @@ export default Vue.directive('draggable',{
 
     el.style.position = "absolute";
 
-    jquery(el).draggable();
+    jquery(el).draggable({    
+        helper: (shallClone)? "clone":"original",
+    }
+    );
     return;
   },
   update: function (newValue, oldValue) {

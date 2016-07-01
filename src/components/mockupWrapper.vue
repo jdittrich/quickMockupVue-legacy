@@ -43,13 +43,14 @@ export default {
 .mockupWrapper{
   overflow: scroll;
   margin: 0px;
-  flex: 1 1 100%;
+  /*flex: 1 1 100%;*/
   padding: 0px;
   position: absolute;
   background: lime;
-  width:100%;
+  width:calc(100% - 200px);
   height: 100%;
   top:0;
   left:200px;
+  z-index:-100;
 }
 </style>

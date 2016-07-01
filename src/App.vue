@@ -9,7 +9,7 @@
 <script>
 import sidebar from './components/elementTemplatesSidebar.vue'
 import mockupwrapper from './components/mockupWrapper.vue'
-    
+
 export default {
     components:{
         'sidebar':sidebar,
@@ -28,7 +28,10 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: Helvetica, sans-serif;
+html, body, #app  {
+  margin:0;
+  padding:0
 }
+
+
 </style>
