@@ -2,6 +2,9 @@
 import interact from 'interact.js';
 import Vue from 'vue';
 
+import jquery from 'jquery';
+import jqueryui from '../libs/jquery-ui.js';
+
 import {moveWidget,changeRect,addElement} from '../vuex/actions.js';
 
 //finds out: new child? (or do that in the directive?)
@@ -17,50 +20,68 @@ export default Vue.directive('dropable',{
     var that = this;
     var el = that.el;
 
-    interact(el)
-        .dropzone({
-            ondrop: function (e) {
+    jquery(el).droppable({
+        greedy:true, //you can only attach it to one element, otherwise every nested dropable recieves
+        drop:function(event,ui){
+            console.log(event,ui)
+            //needs target id
+            //needs own id
 
-                // console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
-                // console.log("dropped on",e.target.__vue__.widgetdata.l_id)
+            // droppable = this, or ...
+            // draggable = ui.draggable
 
-                // is this an OK way? Somehow, the __ say to me: "probably not"
-                var targetId = e.target.__vue__.widgetdata.l_id;
-                var model = e.draggable.model;
+            //if new element
 
-                // find out how the drop el is positioned vs. your el (client rect?)
-                var targetRect = e.target.getClientRects()[0];
-                var droppedRect = e.relatedTarget.getClientRects()[0];
+            //if old element
 
-                var droppedNewPos = {
-                    top: droppedRect.top - targetRect.top,
-                    left: droppedRect.left - targetRect.left
-                };
+        }
 
-                if(!model.l_id &&
-                    model.templatename &&
-                    model.templatestring){ //element is new and has attributes of a template
+    })
 
-                  console.log("newElementDropped!",model)
-                  var widgetType =  model.templatename;
-                  addElement(that.vm.$store,targetId,droppedNewPos,widgetType);
-
-                } else { //...otherwise, element should be an existing element on canvas
-                  var droppedId = model.l_id;
-                  console.log("existing ElementDropped!",model)
-                //create a new element if dropped from sidebar
-                //console.log("MW",moveWidget);
-                //change parent if dropped from another element
-                moveWidget(that.vm.$store, droppedId,targetId); //this.vm.$store is not ideal (http://vuex.vuejs.org/en/actions.html)
-
-                //console.log("newpos",droppedNewPos);
-                changeRect(that.vm.$store,droppedId,droppedNewPos);
-              }
-
-            },
-            //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)
-            overlap: 1,
-        });
+    // interact(el)
+    //     .dropzone({
+    //         ondrop: function (e) {
+    //
+    //             // console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
+    //             // console.log("dropped on",e.target.__vue__.widgetdata.l_id)
+    //
+    //             // is this an OK way? Somehow, the __ say to me: "probably not"
+    //             var targetId = e.target.__vue__.widgetdata.l_id;
+    //             var model = e.draggable.model;
+    //
+    //             // find out how the drop el is positioned vs. your el (client rect?)
+    //             var targetRect = e.target.getClientRects()[0];
+    //             var droppedRect = e.relatedTarget.getClientRects()[0];
+    //
+    //             var droppedNewPos = {
+    //                 top: droppedRect.top - targetRect.top,
+    //                 left: droppedRect.left - targetRect.left
+    //             };
+    //
+    //             if(!model.l_id &&
+    //                 model.templatename &&
+    //                 model.templatestring){ //element is new and has attributes of a template
+    //
+    //               console.log("newElementDropped!",model)
+    //               var widgetType =  model.templatename;
+    //               addElement(that.vm.$store,targetId,droppedNewPos,widgetType);
+    //
+    //             } else { //...otherwise, element should be an existing element on canvas
+    //               var droppedId = model.l_id;
+    //               console.log("existing ElementDropped!",model)
+    //             //create a new element if dropped from sidebar
+    //             //console.log("MW",moveWidget);
+    //             //change parent if dropped from another element
+    //             moveWidget(that.vm.$store, droppedId,targetId); //this.vm.$store is not ideal (http://vuex.vuejs.org/en/actions.html)
+    //
+    //             //console.log("newpos",droppedNewPos);
+    //             changeRect(that.vm.$store,droppedId,droppedNewPos);
+    //           }
+    //
+    //         },
+    //         //accept:".mockupwidget", //not good. This is paralell DOM (CSS selector)/vue (where it should be configured)
+    //         overlap: 1,
+    //     });
   },
   update: function (newValue, oldValue) {
     // do something based on the updated value

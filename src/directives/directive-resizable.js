@@ -21,7 +21,9 @@ export default Vue.directive('resizable',{
     var el = that.el;
 
 
-    jquery(el).resizable();
+    jquery(el).resizable({
+        handles: "n, e, s, w",
+    });
 
 
   },
