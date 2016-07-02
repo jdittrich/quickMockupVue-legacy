@@ -26,7 +26,12 @@ export default Vue.directive('dropable',{
             console.log(event,ui);
 
             var droppedOnThis = event.target;
-            var draggable = ui.draggable[0];
+
+            // helper is the actually moved element, draggable is the element on
+            // on which the drag was started. They diverge if the clone on drag
+            // option is used
+            var draggable = ui.helper[0];//ui.draggable[0];
+            var originalDraggable = ui.draggable[0];
             //needs target id
             //needs own id
             var draggedRect = draggable.getClientRects()[0]; //!! helper
@@ -49,7 +54,7 @@ export default Vue.directive('dropable',{
             //but not all dragged have l_ids (e.g. elements to be created do not), so we need to check.
             var draggable_l_id = null;
 
-            var draggableVue= draggable.__vue__;
+            var draggableVue= originalDraggable.__vue__;
 
             if(draggableVue.widgetdata && draggableVue.widgetdata.l_id){
               draggable_l_id = draggableVue.widgetdata.l_id;
