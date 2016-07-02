@@ -36,6 +36,6 @@ export default Vue.directive('draggable',{
   unbind: function () {
     // do clean up work
     // e.g. remove event listeners added in bind()
-    interact(this.el).unset();
+    jquery(this.el).draggable( "destroy" );
   }
 });

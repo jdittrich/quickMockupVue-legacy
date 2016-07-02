@@ -26,15 +26,19 @@ export default Vue.directive('dropable',{
             console.log(event,ui);
 
             var droppedOnThis = event.target;
-            var draggable = ui.draggable;
+            var draggable = ui.draggable[0];
             //needs target id
             //needs own id
-            var draggedRect = draggable[0].getClientRects()[0]; //!! helper
+            var draggedRect = draggable.getClientRects()[0]; //!! helper
             var droppedRect = droppedOnThis.getClientRects()[0];
 
+            // var droppedNewPos = {
+            //     top: droppedRect.top - draggedRect.top,
+            //     left: droppedRect.left - draggedRect.left
+            // };
             var droppedNewPos = {
-                top: droppedRect.top - targetRect.top,
-                left: droppedRect.left - targetRect.left
+                top:draggedRect.top - droppedRect.top,
+                left: draggedRect.left- droppedRect.left
             };
 
 
@@ -45,7 +49,7 @@ export default Vue.directive('dropable',{
             //but not all dragged have l_ids (e.g. elements to be created do not), so we need to check.
             var draggable_l_id = null;
 
-            var draggableVue= ui.draggable[0].__vue__.widgetdata.l_id;
+            var draggableVue= draggable.__vue__;
 
             if(draggableVue.widgetdata && draggableVue.widgetdata.l_id){
               draggable_l_id = draggableVue.widgetdata.l_id;
@@ -67,10 +71,6 @@ export default Vue.directive('dropable',{
                 droppedNewPos,
                 widgetType);
             }
-
-
-
-
         }
 
     });
@@ -127,6 +127,6 @@ export default Vue.directive('dropable',{
   unbind: function () {
     // do clean up work
     // e.g. remove event listeners added in bind()
-    interact(this.el).unset();
+    jquery(this.el).droppable( "destroy" );
   }
 });

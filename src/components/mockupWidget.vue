@@ -6,7 +6,7 @@
         left:widgetdata.rect.left+'px',
         top:widgetdata.rect.top+'px'
         }"
-        
+
 v-draggable="true"
 v-dropable="true"
 v-resizable="true"
@@ -87,6 +87,11 @@ export default {
 <style>
 .mockupwidget{
     outline:1px solid rgba(0,0,0,0.5);
+    border:1px solid gray;
     /*width:20em;*/
+    background: rgba(0, 0, 0, 0.1);
+   -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 </style>
