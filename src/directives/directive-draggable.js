@@ -22,7 +22,7 @@ export default Vue.directive('draggable',{
 
     el.style.position = "absolute";
 
-    jquery(el).draggable({    
+    jquery(el).draggable({
         helper: (shallClone)? "clone":"original",
     }
     );

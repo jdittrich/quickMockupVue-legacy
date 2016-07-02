@@ -23,23 +23,60 @@ export default Vue.directive('dropable',{
     jquery(el).droppable({
         greedy:true, //you can only attach it to one element, otherwise every nested dropable recieves
         drop:function(event,ui){
-            console.log(event,ui)
+            console.log(event,ui);
+
+            var droppedOnThis = event.target;
+            var draggable = ui.draggable;
             //needs target id
             //needs own id
+            var draggedRect = draggable[0].getClientRects()[0]; //!! helper
+            var droppedRect = droppedOnThis.getClientRects()[0];
 
-            // droppable = this, or ...
-            // draggable = ui.draggable
+            var droppedNewPos = {
+                top: droppedRect.top - targetRect.top,
+                left: droppedRect.left - targetRect.left
+            };
 
-            //if new element
 
-            //if old element
+            //all element on canvas have l_ids, so this will work
+            var droppedOnThis_l_id = droppedOnThis.__vue__.widgetdata.l_id;
+
+
+            //but not all dragged have l_ids (e.g. elements to be created do not), so we need to check.
+            var draggable_l_id = null;
+
+            var draggableVue= ui.draggable[0].__vue__.widgetdata.l_id;
+
+            if(draggableVue.widgetdata && draggableVue.widgetdata.l_id){
+              draggable_l_id = draggableVue.widgetdata.l_id;
+
+              moveWidget(
+                that.vm.$store,
+                draggable_l_id,
+                droppedOnThis_l_id);
+              changeRect(
+                that.vm.$store,
+                draggable_l_id,
+                droppedNewPos);
+            } else if (draggableVue.templatename){
+              let widgetType = draggableVue.templatename;
+
+              addElement(
+                that.vm.$store,
+                droppedOnThis_l_id,
+                droppedNewPos,
+                widgetType);
+            }
+
+
+
 
         }
 
-    })
+    });
 
     // interact(el)
-    //     .dropzone({
+    //     .dropzone({q
     //         ondrop: function (e) {
     //
     //             // console.log("droppedOnThis:",e,e.relatedTarget.__vue__.widgetdata.l_id)
