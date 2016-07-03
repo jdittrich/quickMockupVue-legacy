@@ -1,5 +1,9 @@
 <template>
-<div class="mockupwidget"
+<div
+    class="mockupwidget"
+
+    v-bind:class="{'selectedWidget':isSelected}"
+
     v-bind:style="{
         width: widgetdata.rect.width + 'px',
         height:widgetdata.rect.height+'px',
@@ -10,6 +14,8 @@
 v-draggable="true"
 v-dropable="true"
 v-resizable="true"
+
+v-on:mousedown.stop="selectHandler"
 
 >
 <!-- todo -->
@@ -49,6 +55,7 @@ import widgettemplate from './widgetTemplate.vue';
 import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
 import resizable from '../directives/directive-resizable.js';
+import {selectWidget} from '../vuex/actions.js';
 
 export default {
     name:"mockupwidget",
@@ -63,6 +70,12 @@ export default {
     components:{
         widgettemplate:widgettemplate
     },
+    methods:{
+      selectHandler:function(){
+        console.log("selecting...", this.widgetdata.l_id);
+        this.selectWidget(this.widgetdata.l_id);
+      }
+    },
     computed:{
       childMockupWidgets(){ //uses ids to get the children's objects as values.
         //console.log("this, this.wd",this,this.widgetdata)
@@ -72,19 +85,38 @@ export default {
           return that.widgetdata.children.includes(element.l_id)
         });
         return childwidgets;
+      },
+    isSelected(){
+
+      if(this.whichSelected == this.widgetdata.l_id){
+        return true;
+      } else {
+        return false;
       }
+    }
     },
     vuex:{
         getters: {
             allwidgets(state){
-                return state.mockupwidgets;
+              return state.mockupwidgets;
+            },
+            whichSelected(state){
+              console.log("isselected",state.selectedWidget)
+              return state.selectedWidget;
             }
+        },
+        actions:{
+          selectWidget:selectWidget
         }
     }
 }
 </script>
 
 <style>
+.selectedWidget{
+  border-color:red !important;
+}
+
 .mockupwidget{
     outline:1px solid rgba(0,0,0,0.5);
     border:1px solid gray;

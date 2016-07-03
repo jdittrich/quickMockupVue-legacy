@@ -1,5 +1,3 @@
-
-import interact from 'interact.js';
 import Vue from 'vue';
 
 import {changeRect} from '../vuex/actions.js';
@@ -33,6 +31,6 @@ export default Vue.directive('resizable',{
   unbind: function () {
     // do clean up work
     // e.g. remove event listeners added in bind()
-    interact(this.el).unset();
+    jquery(this.el).resizable("destroy");
   }
 });

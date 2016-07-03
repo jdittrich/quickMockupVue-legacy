@@ -3,7 +3,6 @@
       <li v-for="template in allWidgetTemplates" class="widgetTemplateListContainer">
           <widgettemplate
             class="widgettemplate"
-            v-for="template in allWidgetTemplates"
             :templatename="template.name"
             :templatestring="template.templatestring"
             v-draggable="true"
@@ -53,5 +52,14 @@ export default {
 
 .widgetTemplateListContainer{
     position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid #333;
+    border-radius: 3px;
+    background: white;
+    width: 100%;
+    min-height: 3em;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 </style>

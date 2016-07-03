@@ -106,6 +106,9 @@ const mutations = {
 		element.rect.left   = rect.left   || element.rect.left;
 		element.rect.width  = rect.width  || element.rect.width;
 		element.rect.height = rect.height || element.rect.height;
+	},
+	SELECTWIDGET(state,l_id){
+		state.selectedWidget = l_id;
 	}
 };
 

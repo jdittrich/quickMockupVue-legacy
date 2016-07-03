@@ -19,6 +19,7 @@ export default  { //should there be a var?
 	//     content:{},
 	//     children:["1","2"],
 	// 	},
+	selectedWidget:null,
 	mockupwidgets:[
         {
             rect:{

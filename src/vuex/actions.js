@@ -41,3 +41,7 @@ export function moveWidget(store,elementToMoveId,futureParentId){
 	// store.dispatch("DETACH",currentParent,elementToMove);
 	// store.dispatch("ATTACH",futureParent,elementToMove);
 }
+
+export function selectWidget(store,l_id){
+	store.dispatch("SELECTWIDGET",l_id);
+}
