@@ -1,4 +1,5 @@
 //============helpers============================
+//I suppose those can go.
 function helperIdToObject(elements, id){
 	var element = elements.find(function(element){
 		return element.l_id === id;
@@ -24,6 +25,10 @@ export  function addElement(store,futureParentId,rect,widgettype){
 
 export  function deleteElement(store,element){
 	store.dispatch("DELETEELEMENT",element);
+}
+
+export function deleteSelected(store){
+	store.dispatch("DELETESELECTED");
 }
 
 export function changeRect(store, element, changedRect){

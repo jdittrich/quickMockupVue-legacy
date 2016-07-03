@@ -49,7 +49,7 @@ const mutations = {
 		//state.elements.$remove(element);
 		var elementsToRemove = [];
 
-		var parent = helperFindParentObject(state.elements,element);
+		var parent = helperFindParentObject(state.mockupwidgets,element);
 		parent.children.$remove(element.l_id);
 
 		elementsToRemove = [];
@@ -109,6 +109,11 @@ const mutations = {
 	},
 	SELECTWIDGET(state,l_id){
 		state.selectedWidget = l_id;
+	},
+	DELETESELECTED(state){
+		var element = helperIdToObject(state.mockupwidgets,state.selectedWidget);
+
+		mutations.DELETEELEMENT(state,element); //this seems not clean, I should rather use the collect children code, put it in a helper and call that both from deleteselected and delete
 	}
 };
 

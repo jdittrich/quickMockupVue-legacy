@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @keyup.delete.prevent="deleteSelected">
       <sidebar></sidebar>
       <mockupwrapper></mockupwrapper>
     <h1>{{ msg }}</h1>
@@ -9,6 +9,14 @@
 <script>
 import sidebar from './components/elementTemplatesSidebar.vue'
 import mockupwrapper from './components/mockupWrapper.vue'
+
+import Mousetrap from 'mousetrap'; //is that ok here?
+
+import {deleteSelected} from './vuex/actions.js';
+
+Mousetrap.bind("del",function(){
+     deleteSelected();
+})
 
 export default {
     components:{
@@ -23,7 +31,18 @@ export default {
             // its initial state.
             msg: 'Hello Vue!'
         }
+    },
+    ready(){
+      var that=this;
+      Mousetrap.bind("del",function(){
+           that.deleteSelected();
+      });
+    },
+    vuex:{
+      actions:{
+        deleteSelected:deleteSelected
     }
+  }
 }
 </script>
 
