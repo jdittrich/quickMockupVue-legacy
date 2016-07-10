@@ -1,3 +1,8 @@
+<!--
+This is the container for the-way-the-widget-looks component (widgettemplate)
+and the widgets children elements.
+-->
+
 <template>
 <div
     class="mockupwidget"
@@ -20,7 +25,11 @@ v-on:mousedown.stop="selectHandler"
 >
 <!-- todo -->
 <!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
-    <widgettemplate :templatename="widgetdata.widgetType"></widgettemplate>
+    <widgettemplate
+        :content="widgetdata.content"
+        :templatename="widgetdata.widgetType">
+
+    </widgettemplate>
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
 
     {{widgetdata.rect.width+'px'}}{{widgetdata.rect.height+'px'}}

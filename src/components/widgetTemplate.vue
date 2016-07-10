@@ -1,6 +1,24 @@
+<!--
+this is the component for what-the-widget-looks-like, or rather a container for
+the partial that does actually define it. The partial is dynamically generated form a string.
+
+It is child of a mockupwidget-Component.
+
+Notes -
+
+
+TODO:
+
+-->
+
 <template>
   <div class="widgetTemplate">
-      <partial :name="templatename"></partial>
+      <component :is="templatename">bla</component>
+
+     <!-- <partial :name="templatename">
+          <p>test</p>
+     </partial> -->
+
 			<!-- possibly other stuff, but not yet -->
   </div>
 </template>
@@ -9,6 +27,10 @@
 
 import Vue from 'vue'
 
+import widgetinlineedit from './widgetinlineedit.vue'
+
+
+
 export default {
     /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the partial dynamically in the created-hook which happens before the dom rendering and after the data binding.
 
@@ -16,10 +38,19 @@ export default {
     */
 
     created:function(){
-        Vue.partial(this.templatename, this.templatestring);
+
+        // currentComponentName = this.templatename;
+        // currentComponentTemplate = this.templatestring;
+        // Vue.partial(this.templatename, this.templatestring);
+        Vue.component(this.templatename,{template:this.templatestring})
     },
     props:{
         templatename:String,
+        content:Object
+    },
+    components:{
+        "widgetinlineedit":widgetinlineedit, //that might be done automatically too, otherwise we have coupling between the usable sub components and this component here.
+        //"currentTemplate":{template:that.templatestring}
     },
     computed:{
         templatestring:function(){

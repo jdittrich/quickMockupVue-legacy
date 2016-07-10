@@ -7,11 +7,11 @@ export default  { //should there be a var?
 		},
 		{
 			name:"window",
-			templatestring:"<div>WINDOW, I AM, <strong>YODA</strong>, TOO, I AM</div>"
+			templatestring:"<div>WINDOW, <slot>asfas</slot>I AM, <strong>YODA</strong>, TOO, I AM</div>"
 		},
 		{
 			name:"canvas",
-			templatestring:"<div>CANVAS!</div>"
+			templatestring:"<div>CANVAS!<widgetinlineedit>huhu</widgetinlineedit></div>"
 		}
 	],
 	// canvas:{
