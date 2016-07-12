@@ -29,7 +29,7 @@ import Vue from 'vue'
 
 import widgetinlineedit from './widgetinlineedit.vue'
 
-
+var subcomponent = null;
 
 export default {
     /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the partial dynamically in the created-hook which happens before the dom rendering and after the data binding.
@@ -42,7 +42,9 @@ export default {
         // currentComponentName = this.templatename;
         // currentComponentTemplate = this.templatestring;
         // Vue.partial(this.templatename, this.templatestring);
-        Vue.component(this.templatename,{template:this.templatestring})
+        console.log(this.templatename,this.templatestring);
+        Vue.component(this.templatename,{template:this.templatestring, components:{"widgetinlineedit":widgetinlineedit}})
+        // subcomponent = Vue.extend(this.templatename,{template:this.templatestring, propscomponents:{"widgetinlineedit":widgetinlineedit}})
     },
     props:{
         templatename:String,

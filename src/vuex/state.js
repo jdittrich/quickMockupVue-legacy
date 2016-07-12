@@ -1,17 +1,17 @@
 export default  { //should there be a var?
 	title:"myProject",
 	widgetTemplates:[
-		{
-			name:"button",
+		{   //why cw...? if you have button and there is a button in your button template you get recursion to inifinity
+			name:"cwbutton",
 			templatestring:"<button>I AM BUTTON</button>"
 		},
 		{
-			name:"window",
+			name:"cwwindow",
 			templatestring:"<div>WINDOW, <slot>asfas</slot>I AM, <strong>YODA</strong>, TOO, I AM</div>"
 		},
 		{
-			name:"canvas",
-			templatestring:"<div>CANVAS!<widgetinlineedit>huhu</widgetinlineedit></div>"
+			name:"cwcanvas",
+			templatestring:'<div>CANVAS!<widgetinlineedit>huhu</widgetinlineedit></div>' //<div onclick="alert()"> ...any you are pawnd. Bad
 		}
 	],
 	// canvas:{
