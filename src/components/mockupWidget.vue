@@ -49,10 +49,9 @@ v-on:mousedown.stop="selectHandler"
         <mockupwidget
             v-if="childMockupWidgets.length > 0"
             v-for="mockupwidget in childMockupWidgets"
-
-
-
             :widgetdata="mockupwidget"
+            :content="widgetdata.content"
+
             ></mockupwidget>
     </div>
 </div>

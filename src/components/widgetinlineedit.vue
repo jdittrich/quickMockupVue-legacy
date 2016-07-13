@@ -1,9 +1,10 @@
 <template>
     <div>
-        <span v-on:dblclick="enterEdit" v-show="!editMode" >Hello!!!{{text}}</span>
+        <span v-on:dblclick="enterEdit" v-show="!editMode" >Hello:{{content | json}}</span>
         <span v-show="editMode">
-            <input type="text" value={{text}}>
-            <span v-on:click="exitEdit">OK</span>
+            <input type="text" value="{{content.text}}">
+            <button v-on:click="exitEdit">OK</button>
+            {{content.text}}{{text}}
         </span>
     </div>
     <!-- spans all over the place? -->
@@ -16,7 +17,7 @@ export default {
         console.log("i was created!",this)
     },
     props: {
-        "text":String //could also have a classname with a default
+        "content":Object,
     },
     data(){
         return{

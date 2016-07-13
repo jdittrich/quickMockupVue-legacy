@@ -13,7 +13,7 @@ TODO:
 
 <template>
   <div class="widgetTemplate">
-      <component :is="templatename">bla</component>
+      <component :is="templatename" :content="content"></component>
 
      <!-- <partial :name="templatename">
           <p>test</p>
@@ -29,7 +29,6 @@ import Vue from 'vue'
 
 import widgetinlineedit from './widgetinlineedit.vue'
 
-var subcomponent = null;
 
 export default {
     /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the partial dynamically in the created-hook which happens before the dom rendering and after the data binding.
@@ -43,15 +42,20 @@ export default {
         // currentComponentTemplate = this.templatestring;
         // Vue.partial(this.templatename, this.templatestring);
         console.log(this.templatename,this.templatestring);
-        Vue.component(this.templatename,{template:this.templatestring, components:{"widgetinlineedit":widgetinlineedit}})
+        Vue.component(this.templatename,{template:this.templatestring, props:{"content":this.content}, components:{"widgetinlineedit":widgetinlineedit}})
         // subcomponent = Vue.extend(this.templatename,{template:this.templatestring, propscomponents:{"widgetinlineedit":widgetinlineedit}})
     },
     props:{
         templatename:String,
-        content:Object
+        content:{
+            type:Object,
+            default:function(){
+                return {text:"inputText"}
+            }
+        }
     },
     components:{
-        "widgetinlineedit":widgetinlineedit, //that might be done automatically too, otherwise we have coupling between the usable sub components and this component here.
+        //"widgetinlineedit":widgetinlineedit, //that might be done automatically too, otherwise we have coupling between the usable sub components and this component here.
         //"currentTemplate":{template:that.templatestring}
     },
     computed:{

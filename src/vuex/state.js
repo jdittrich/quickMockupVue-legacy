@@ -2,16 +2,17 @@ export default  { //should there be a var?
 	title:"myProject",
 	widgetTemplates:[
 		{   //why cw...? if you have button and there is a button in your button template you get recursion to inifinity
+			// or maybe they should just get some random gibberish as name; we can still show the user a human readable name
 			name:"cwbutton",
-			templatestring:"<button>I AM BUTTON</button>"
+			templatestring:'<button>I AM BUTTON</button><widgetinlineedit :content="content">huhu</widgetinlineedit>'
 		},
 		{
 			name:"cwwindow",
-			templatestring:"<div>WINDOW, <slot>asfas</slot>I AM, <strong>YODA</strong>, TOO, I AM</div>"
+			templatestring:'{{content}}<div>WINDOW, <slot>asfas</slot>I AM, <strong>YODA</strong>, TOO, I AM<widgetinlineedit :content="content">huhu</widgetinlineedit></div>'
 		},
 		{
 			name:"cwcanvas",
-			templatestring:'<div>CANVAS!<widgetinlineedit>huhu</widgetinlineedit></div>' //<div onclick="alert()"> ...any you are pawnd. Bad
+			templatestring:'<div>CANVAS!</div>' //<div onclick="alert()"> ...any you are pawnd. Bad
 		}
 	],
 	// canvas:{
@@ -33,7 +34,7 @@ export default  { //should there be a var?
             },
             l_id:"0",
             children:["1","2"],
-            widgetType:"canvas"
+            widgetType:"cwcanvas"
         },
         {
             rect:{
@@ -47,7 +48,7 @@ export default  { //should there be a var?
             },
             l_id:"1",
             children:["3"],
-            widgetType: "window",
+            widgetType: "cwwindow",
         },
         {
             rect:{
@@ -61,7 +62,7 @@ export default  { //should there be a var?
             },
             l_id:"2",
             children:[],
-            widgetType: "window"
+            widgetType: "cwwindow"
         },
         {
             rect:{
@@ -75,7 +76,7 @@ export default  { //should there be a var?
             },
             l_id:"3",
             children:[],
-            widgetType:"button"
+            widgetType:"cwbutton"
         },
 	]
 };

@@ -4,7 +4,6 @@
           <widgettemplate
             class="widgettemplate"
             :templatename="template.name"
-            :templatestring="template.templatestring"
             v-draggable="true"
             cloneondrag="true"
           ></widgettemplate>
