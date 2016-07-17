@@ -64,6 +64,7 @@ import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
 import resizable from '../directives/directive-resizable.js';
 import {selectWidget} from '../vuex/actions.js';
+import {selectedWidget,allwidgets} from '../vuex/getters.js'
 
 export default {
     name:"mockupwidget",
@@ -105,13 +106,8 @@ export default {
     },
     vuex:{
         getters: {
-            allwidgets(state){
-              return state.mockupwidgets;
-            },
-            whichSelected(state){
-              console.log("isselected",state.selectedWidget)
-              return state.selectedWidget;
-            }
+            allwidgets:allwidgets,
+            selectedWidget:selectedWidget
         },
         actions:{
           selectWidget:selectWidget

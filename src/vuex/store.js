@@ -6,13 +6,16 @@ import state from './state.js';
 Vue.use(Vuex);
 
 function helperIdToObject(elements, id){
+	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var element = elements.find(function(element){
 		return element.l_id === id;
 	});
 	return element;
 }
 
+
 function helperFindParentObject(possibleParents, childElement){
+	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var parent = possibleParents.find(function(possibleParent){
 		return possibleParent.children.includes(childElement.l_id);
 	});
@@ -20,25 +23,35 @@ function helperFindParentObject(possibleParents, childElement){
 }
 
 
+function helperFindTemplate(templates,templatename){
+  //WHAT IT DOES: for an array of templates, returns the template object with the templatename
+  var template = templates.find(function(possibleTemplate){
+		return possibleTemplate.name === templatename;
+	});
+	return template;
+}
+
 
 const mutations = {
 	ADDELEMENT(state,futureParentId, rect,widgetType) {
+
+
+		var new_l_id = ""+Math.random();//poor mans (not very) UUID :-) replace with proper thing.later TODO
+		var template =  helperFindTemplate(state.widgetTemplates,widgetType);
+
 		var newElement = {
 			rect:{
 				top:rect.top,
 				left:rect.left,
-      			width:100,
+				width:100,
 				height:100
 			},
-            content:{
-                 text:"",
-            },
-            l_id:null,
-            children:[],
-            widgetType: widgetType
+			content: template.content ||{},
+			l_id: new_l_id,
+			children:[],
+			widgetType: widgetType,
 		};
 
-		newElement.l_id = ""+Math.random();//poor mans (not very) UUID :-) replace with proper thing.later TODO4
 		state.mockupwidgets.push(newElement);
 
 		var parent = helperIdToObject(state.mockupwidgets, futureParentId);

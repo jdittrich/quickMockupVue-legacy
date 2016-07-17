@@ -11,6 +11,8 @@ import dropable from '../directives/directive-dropable.js'
 //import mockupwidget from './mockupWidget.vue'
 // braucht mixin drop für children
 
+//TODO: I suppose we can clean this element up.
+
 //TODO: seemingly, the dropable-directive of canvas has:
 // el: mockupcanvas
 // but vm.$el : mockupwrapper.

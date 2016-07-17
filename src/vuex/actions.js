@@ -1,6 +1,7 @@
 //============helpers============================
 //I suppose those can go.
 function helperIdToObject(elements, id){
+	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var element = elements.find(function(element){
 		return element.l_id === id;
 	});
@@ -9,6 +10,7 @@ function helperIdToObject(elements, id){
 
 
 function helperFindParentObject(possibleParents, childElement){
+	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var parent = possibleParents.find(function(possibleParent){
 		return possibleParent.children.includes(childElement.l_id);
 	});
@@ -16,10 +18,19 @@ function helperFindParentObject(possibleParents, childElement){
 }
 
 
+function helperFindTemplate(templates,templatename){
+  //WHAT IT DOES: for an array of templates, returns the template object with the templatename
+  var template = templates.find(function(possibleTemplate){
+		return possibleTemplate.templatename === templatename;
+	});
+	return template;
+}
+
+
 //============actions============================
 
-export  function addElement(store,futureParentId,rect,widgettype){
-	store.dispatch("ADDELEMENT",futureParentId,rect,widgettype);
+export  function addElement(store,futureParentId,rect,widgetType){
+	store.dispatch("ADDELEMENT",futureParentId,rect,widgetType);
 }
 
 

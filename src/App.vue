@@ -14,9 +14,7 @@ import Mousetrap from 'mousetrap'; //is that ok here?
 
 import {deleteSelected} from './vuex/actions.js';
 
-Mousetrap.bind("del",function(){
-     deleteSelected();
-})
+
 
 export default {
     components:{
@@ -34,8 +32,9 @@ export default {
     },
     ready(){
       var that=this;
-      Mousetrap.bind("del",function(){
+      Mousetrap.bind(["del","backspace"],function(e){
            that.deleteSelected();
+           e.preventDefault();
       });
     },
     vuex:{

@@ -1,30 +1,37 @@
 <template>
     <div>
-        <span v-on:dblclick="enterEdit" v-show="!editMode" >Hello:{{content | json}}</span>
+        <span v-on:dblclick="enterEdit" v-show="!editMode" >{{text}}</span>
         <span v-show="editMode">
-            <input type="text" value="{{content.text}}">
+            <input type="text" v-on:keyup.delete.stop="" value="{{text}}">
             <button v-on:click="exitEdit">OK</button>
-            {{content.text}}{{text}}
+            {{text}}
         </span>
     </div>
     <!-- spans all over the place? -->
 </template>
 <script>
 
+
+
 export default {
     name:"widgetInlineEdit",
     created(){
         console.log("i was created!",this)
     },
+    compiled(){
+        var content = this.$el.getAttribute("data-defaultcontent");
+    },
     props: {
-        "content":Object,
+        "text":String,
+    },
+    methods:{
+
     },
     data(){
         return{
             editMode:false
         }
     },
-    template: '',
     methods:{
         enterEdit(){
             this.editMode = true;
@@ -32,6 +39,12 @@ export default {
         exitEdit(){
             this.editMode = false;
             this.text = this.$el.querySelectorAll("input")[0].value;
+        }
+    },
+    vuex:{
+        getters:{},
+        actions:{
+            addString(){}
         }
     }
 }

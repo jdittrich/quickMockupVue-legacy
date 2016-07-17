@@ -6,10 +6,10 @@ import jquery from 'jquery';
 import jqueryui from '../libs/jquery-ui.js';
 
 import {moveWidget,changeRect,addElement} from '../vuex/actions.js';
+import {alltemplates} from '../vuex/getters.js';
 
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
-
 
 export default Vue.directive('dropable',{
   //we need a two way bind here to change the values from within the directives functions!
