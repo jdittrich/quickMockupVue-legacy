@@ -8,7 +8,6 @@ import jqueryui from '../libs/jquery-ui.js';
 //finds out: new child? (or do that in the directive?)
 //drop : add to new parent OR move OR just add to parent all the time, no matter if new or old, we could handle this on the data level.
 
-
 export default Vue.directive('resizable',{
   //we need a two way bind here to change the values from within the directives functions!
   bind: function () {
@@ -20,6 +19,20 @@ export default Vue.directive('resizable',{
 
     jquery(el).resizable({
         handles: "n, e, s, w",
+        stop:function(event,ui){
+          var newrect={};
+          var widget_l_id = that.vm.widgetdata.l_id;
+
+          newrect.width = ui.size.width;
+          newrect.height = ui.size.height;
+
+          changeRect(
+            that.vm.$store,
+            widget_l_id,
+            newrect
+          );
+
+        }
     });
 
 
