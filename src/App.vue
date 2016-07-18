@@ -34,7 +34,7 @@ export default {
       var that=this;
       Mousetrap.bind(["del","backspace"],function(e){
            that.deleteSelected();
-           e.preventDefault();
+           e.preventDefault(); //otherwise, we go a page pack in chrome. 
       });
     },
     vuex:{
