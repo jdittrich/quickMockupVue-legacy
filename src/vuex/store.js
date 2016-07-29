@@ -127,6 +127,10 @@ const mutations = {
 		var element = helperIdToObject(state.mockupwidgets,state.selectedWidget);
 
 		mutations.DELETEELEMENT(state,element); //this seems not clean, I should rather use the collect children code, put it in a helper and call that both from deleteselected and delete
+	},
+	ADDWIDGETARRAYITEM(state,array){
+		//for lists of items on components
+		array.push("ChangeMe");
 	}
 };
 

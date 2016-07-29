@@ -9,7 +9,7 @@ export default  { //should there be a var?
 		},
 		{
 			name:"cwwindow",
-			templatestring:'<div>WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :text="content.windowtitle">huhu</widgetinlineedit></div>',
+			templatestring:'<div>WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :text="content.windowtitle">huhu</widgetinlineedit><widgetList :list="content.list"><li v-for="item in list">{{$index}}</li></div>',
 			content:{windowtitle:"heho"}
 		},
 		{
@@ -61,6 +61,7 @@ export default  { //should there be a var?
 			},
             content:{
                 text:"zwei",
+				list:["zweieins","zweizwei","zweidrei"]
             },
             l_id:"2",
             children:[],

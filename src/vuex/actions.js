@@ -61,3 +61,7 @@ export function moveWidget(store,elementToMoveId,futureParentId){
 export function selectWidget(store,l_id){
 	store.dispatch("SELECTWIDGET",l_id);
 }
+
+export function addWidgetArrayItem(store,array){
+	store.dispatch("ADDWIDGETARRAYITEM",array);
+}

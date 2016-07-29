@@ -18,6 +18,7 @@ the component that does actually does this.-->
 import Vue from 'vue'
 
 import widgetinlineedit from './widgetinlineedit.vue'
+import widgetlist from './widgetlist.vue'
 import {alltemplates} from '../vuex/getters.js'
 
 export default {
@@ -30,7 +31,10 @@ export default {
             {
                 template:this.templatestring,
                 props:{"content":this.content},
-                components:{"widgetinlineedit":widgetinlineedit} //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
+                components:{
+                    "widgetinlineedit":widgetinlineedit,
+                    "widgetlist":widgetlist
+                } //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
             }
         );
     },
