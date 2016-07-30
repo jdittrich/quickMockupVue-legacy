@@ -6,21 +6,18 @@
 </template>
 <script>
 
-
 import {addWidgetArrayItem as addArrayItem} from '../vuex/actions.js'
+
+
 
 //should import inline edit
 
 export default {
     name:"widgetlist",
-    created(){
-
-    },
-    compiled(){
-
-    },
+    created(){},
+    compiled(){  },
     props: {
-        "list": Array,
+        "list": Array, //should be array, but can be undefined, too, on creation.
     },
     data(){
         return{
@@ -41,7 +38,7 @@ export default {
     vuex:{
         getters:{},
         actions:{
-            addArrayItem:addArrayItem
+            addArrayItem:addArrayItem,
         }
     }
 }

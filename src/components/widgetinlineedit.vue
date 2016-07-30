@@ -22,7 +22,8 @@ export default {
         var content = this.$el.getAttribute("data-defaultcontent");
     },
     props: {
-        "text":String,
+        "text":null,//text should be string, but if it does not exists yet, it might be
+        "content":Object
     },
     methods:{
 

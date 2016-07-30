@@ -4,13 +4,13 @@ export default  { //should there be a var?
 		{   //why cw...? if you have button and there is a button in your button template you get recursion to inifinity
 			// or maybe they should just get some random gibberish as name; we can still show the user a human readable name
 			name:"cwbutton",
-			templatestring:'Testtext <button><widgetinlineedit :text="content.buttontitle">huhu</widgetinlineedit></button> ',
-			content:{buttontitle:"letsGo"}
+			templatestring:'Testtext <button><widgetinlineedit :text="content.buttontitle" :content="content">huhu</widgetinlineedit></button> ',
+			content:{buttontitle:"qwertz"}
 		},
 		{
 			name:"cwwindow",
-			templatestring:'<div>WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :text="content.windowtitle">huhu</widgetinlineedit><widgetList :list="content.list"><li v-for="item in list">{{$index}}</li></div>',
-			content:{windowtitle:"heho"}
+			templatestring:'<div>WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :text="content.windowtitle">huhu</widgetinlineedit><widgetList :list="content.list">list!<li v-for="item in content.list" track-by="$index">he:{{$index}}</li></widgetlist></div>',
+			content:{windowtitle:"heho",list:["listitem1","listitem2"]}
 		},
 		{
 			name:"cwcanvas",
