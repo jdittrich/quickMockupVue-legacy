@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-on:dblclick="enterEdit" v-show="!editMode" >{{text}}</span>
+        <span v-on:dblclick="enterEdit" v-show="!editMode" >{{text}}bdsfg</span>
         <span v-show="editMode">
             <input type="text" v-on:keyup.delete.stop="" value="{{text}}">
             <button v-on:click="exitEdit">OK</button>
@@ -45,7 +45,7 @@ export default {
     vuex:{
         getters:{},
         actions:{
-            addString(){}
+            //TODO: change text actions
         }
     }
 }

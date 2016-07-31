@@ -131,6 +131,9 @@ const mutations = {
 	ADDWIDGETARRAYITEM(state,array){
 		//for lists of items on components
 		array.push("ChangeMe");
+	},
+	EDITTEXT(state,text){
+
 	}
 };
 
