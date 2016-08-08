@@ -27,7 +27,10 @@ v-on:mousedown.stop="selectHandler"
 <!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
     <widgettemplate
         :content="widgetdata.content"
-        :templatename="widgetdata.widgetType">
+        :templatename="widgetdata.widgetType"
+        :highlighted="widgetdata.highlighted"
+        :active="widgetdata.active"
+        >
 
     </widgettemplate>
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}

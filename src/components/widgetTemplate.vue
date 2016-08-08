@@ -9,7 +9,7 @@ the component that does actually does this.-->
    reuse can possibly be also achived using a mixin, that would need investigation
    -->
   <div class="widgetTemplate">
-      <component :is="templatename" :content="content"></component>
+      <component :is="templatename" :content="content" :disabled:"disabled" highlighted:"highlighted"></component>
   </div>
 </template>
 
@@ -29,12 +29,29 @@ export default {
         //dynamically create component defining the look of the widget
         Vue.component(this.templatename,
             {
-                template:this.templatestring,
-                props:{"content":this.content},
+                template:this.template.templatestring,
+                props:{
+                    "content":this.content,
+                    "highlighted": this.highlighted,
+                    "enabled": this.enabled,
+                    "widgetstyles":this.template.templatestyle
+
+                },
                 components:{
                     "widgetinlineedit":widgetinlineedit,
                     "widgetlist":widgetlist
-                } //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
+                }, //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
+                computed:{
+                    cssobject(){
+                        if()
+                        // like normal/"disabled" and
+                        // and "normal"/highlighted
+                        // this is returned a object.
+
+                        //depends on if disabled or highlighted is active
+                    }
+                },
+                data:
             }
         );
     },
@@ -48,16 +65,16 @@ export default {
         }
     },
     computed:{
-        templatestring:function(){
+        template:function(){
             //compute the template string (HTML-like) by finding among all templates that one that has the same name as the known templatename (the name of the template aka the type of widget is saved with every widget that is created on the canvas);
             var that = this;
             var template = that.alltemplates.find(function(element, index,array){
                 console.log("elementname",element.name,"templatename", that.templatename)
                 return element.name === that.templatename;
             });
-            console.log("template",template);
-            return template.templatestring;
-        }
+            return template
+        },
+
     },
     vuex:{
         getters:{
