@@ -1,32 +1,29 @@
 <template>
     <div>
-        <span v-on:dblclick="enterEdit" v-show="!editMode" >{{text}}bdsfg</span>
+        <span v-on:dblclick="enterEdit" v-show="!editMode" >{{content.text}}bdsfg</span>
         <span v-show="editMode">
-            <input type="text" v-on:keyup.delete.stop="" value="{{text}}">
+            <input type="text" v-on:keyup.delete.stop="" value="{{content.text}}">
             <button v-on:click="exitEdit">OK</button>
-            {{text}}
+            {{content.text}}
         </span>
     </div>
     <!-- spans all over the place? -->
 </template>
 <script>
 
-
+import changeWidgetText from '../vuex/actions.js'
 
 export default {
-    name:"widgetInlineEdit",
+    name:"widgetinlineedit",
     created(){
-        console.log("i was created!",this)
+
     },
     compiled(){
-        var content = this.$el.getAttribute("data-defaultcontent");
+
     },
     props: {
-        "text":null,//text should be string, but if it does not exists yet, it might be
-        "content":Object
-    },
-    methods:{
-
+        //"text":null,//text should be string, but if it does not exists yet, it might be
+        "content":Object //should evaluate to: content needs a text object
     },
     data(){
         return{
@@ -39,13 +36,20 @@ export default {
         },
         exitEdit(){
             this.editMode = false;
-            this.text = this.$el.querySelectorAll("input")[0].value;
+
+            var text = this.$el.querySelectorAll("input")[0].value;
+
+            console.log("exitedit", this.content, text);
+
+            this.changeWidgetText(this.content,text);
         }
     },
     vuex:{
         getters:{},
         actions:{
-            //TODO: change text actions
+            changeWidgetText:function(store, content, text){
+                store.dispatch("CHANGEWIDGETTEXT",content, text);
+            }
         }
     }
 }

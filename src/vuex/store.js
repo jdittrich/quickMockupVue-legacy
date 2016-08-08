@@ -132,8 +132,8 @@ const mutations = {
 		//for lists of items on components
 		array.push("ChangeMe");
 	},
-	EDITTEXT(state,text){
-
+	CHANGEWIDGETTEXT(state,content,text){
+		content.text = text;
 	}
 };
 

@@ -65,3 +65,7 @@ export function selectWidget(store,l_id){
 export function addWidgetArrayItem(store,array){
 	store.dispatch("ADDWIDGETARRAYITEM",array);
 }
+
+export function changeWidgetText(store, content, text){
+	store.dispatch("CHANGEWIDGETTEXT",content, text);
+}
