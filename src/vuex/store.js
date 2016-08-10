@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import state from './state.js';
+import _ from 'underscore';
 
 
 Vue.use(Vuex);
@@ -46,7 +47,8 @@ const mutations = {
 				width:100,
 				height:100
 			},
-			content: template.content ||{},
+			content:  JSON.parse(JSON.stringify(template.content)) || {}, //Clone-an-object-hack: Make Object a JSON-string, parse that string to a JSON/Javascript-Object back.
+				style:template.style,
 			l_id: new_l_id,
 			children:[],
 			widgetType: widgetType,

@@ -9,7 +9,11 @@ the component that does actually does this.-->
    reuse can possibly be also achived using a mixin, that would need investigation
    -->
   <div class="widgetTemplate">
-      <component :is="templatename" :content="content"></component>
+      <component
+
+      :is="templatename"
+      :content="content"
+      :cssstyles="template.cssstyles"></component>
   </div>
 </template>
 
@@ -22,15 +26,18 @@ import widgetlist from './widgetlist.vue'
 import {alltemplates} from '../vuex/getters.js'
 
 export default {
-    /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the component  dynamically in the created-hook which happens before the dom rendering and after the data binding.*/
+    /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the component  dynamically in the created-hook which happens before the dom rendering and after the data bi   nding.*/
 
 
     created:function(){
         //dynamically create component defining the look of the widget
         Vue.component(this.templatename,
             {
-                template:this.templatestring,
-                props:{"content":this.content},
+                template:this.template.templatestring,
+                props:{
+                    "content":Object,
+                    "cssstyles":Object
+                },
                 components:{
                     "widgetinlineedit":widgetinlineedit,
                     "widgetlist":widgetlist
@@ -45,18 +52,18 @@ export default {
             default:function(){
                 return {text:"inputText"}
             }
-        }
+        },
     },
     computed:{
-        templatestring:function(){
+        template:function(){
             //compute the template string (HTML-like) by finding among all templates that one that has the same name as the known templatename (the name of the template aka the type of widget is saved with every widget that is created on the canvas);
             var that = this;
             var template = that.alltemplates.find(function(element, index,array){
-                console.log("elementname",element.name,"templatename", that.templatename)
+                console.log("elementname",element.name,"templatename", that.templatename);
                 return element.name === that.templatename;
             });
             console.log("template",template);
-            return template.templatestring;
+            return template //.templatestring;
         }
     },
     vuex:{

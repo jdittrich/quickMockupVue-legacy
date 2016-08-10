@@ -9,9 +9,20 @@ export default  { //should there be a var?
 		},
 		{
 			name:"cwwindow",
-			templatestring:'<div>WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist></div>',
-			content:{windowtitle:{text:"heho"}, list:[{text:"listitem1"},{text:"listitem2"}]}
+			templatestring:'<div :style="cssstyles.mainelement">WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist></div>',
+			content:{
+				windowtitle:{text:"heho"},
+				list:[
+					{text:"listitem1"},{text:"listitem2"}
+				]
+			},
 			//if I pass only text, it is hard to mutate it (?) via vuex (since text is passed on copy). So I either pass object which I can easier change in vuex or I let the widget handle the changes of .content? See if vue 2.0 still allows passing events to parents.
+
+			cssstyles:{
+				mainelement:{
+					backgroundColor:"lightgray"
+				}
+			}
 		},
 		{
 			name:"cwcanvas",
