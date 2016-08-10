@@ -43,7 +43,8 @@ export default {
                     "widgetlist":widgetlist
                 } //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
             }
-        );
+        );//COMPENENT END
+
     },
     props:{
         templatename:String,

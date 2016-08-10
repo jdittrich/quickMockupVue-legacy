@@ -9,7 +9,7 @@ export default  { //should there be a var?
 		},
 		{
 			name:"cwwindow",
-			templatestring:'<div :style="cssstyles.mainelement">WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist></div>',
+			templatestring:'<div :style="cssstyles.mainelement">WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list" :style="cssstyles.listelement">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist></div>',
 			content:{
 				windowtitle:{text:"heho"},
 				list:[
@@ -20,7 +20,11 @@ export default  { //should there be a var?
 
 			cssstyles:{
 				mainelement:{
-					backgroundColor:"lightgray"
+					backgroundColor:"lightgray",
+
+				},
+				listelement:{
+					backgroundColor:"blue"
 				}
 			}
 		},

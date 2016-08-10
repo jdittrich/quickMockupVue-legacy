@@ -1,8 +1,10 @@
 <template>
-    <ul>
-        <slot>slot!</slot>
-    </ul>
-    <button v-on:click="addButtonHandler">+</button>
+    <div>
+        <ul>
+            <slot>slot!</slot>
+        </ul>
+        <button v-on:click="addButtonHandler">+</button>
+    <div>
 </template>
 <script>
 
