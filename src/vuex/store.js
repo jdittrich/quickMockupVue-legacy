@@ -136,6 +136,15 @@ const mutations = {
 	},
 	CHANGEWIDGETTEXT(state,content,text){
 		content.text = text;
+	},
+	TOGGLEWIDGETSTATE(state,widgetstate,array){
+		widgetstate.state = !widgetstate.state; //toggle
+
+		if(array) { //if array was passed, make all sibling elemenents in that array deactivated. 
+			array.forEach(function(element,index){
+				element.widgetstate.state = false;
+			})
+		}
 	}
 };
 
