@@ -6,11 +6,10 @@
         <button v-on:click="addButtonHandler">+</button>
     <div>
 </template>
+
 <script>
 
-import {addWidgetArrayItem as addArrayItem} from '../vuex/actions.js'
-
-
+import {addWidgetArrayItem as addArrayItem} from '../vuex/actions.js';
 
 //should import inline edit
 
@@ -21,21 +20,21 @@ export default {
     props: {
         "list": Array, //should be array, but can be undefined, too, on creation.
     },
-    data(){
-        return{
-            editMode:false
-        }
-    },
+    // data(){
+    //     return{
+    //         editMode:false
+    //     };
+    // },
     methods:{
         addButtonHandler:function(event){
             this.addArrayItem(this.list);
         },
-        enterEdit(){
-            this.editMode = true;
-        },
-        exitEdit(){
-            this.editMode = false;
-        }
+        // enterEdit(){
+        //     this.editMode = true;
+        // },
+        // exitEdit(){
+        //     this.editMode = false;
+        // }
     },
     vuex:{
         getters:{},
@@ -43,7 +42,7 @@ export default {
             addArrayItem:addArrayItem,
         }
     }
-}
+};
 </script>
 <style>
 </style>

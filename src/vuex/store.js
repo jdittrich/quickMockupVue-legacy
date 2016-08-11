@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import state from './state.js';
-import _ from 'underscore';
 
 
 Vue.use(Vuex);
@@ -47,8 +46,9 @@ const mutations = {
 				width:100,
 				height:100
 			},
-			content:  JSON.parse(JSON.stringify(template.content)) || {}, //Clone-an-object-hack: Make Object a JSON-string, parse that string to a JSON/Javascript-Object back.
-				style:template.style,
+			highlighted: JSON.parse(JSON.stringify(template.highlighted)) || {},
+			content:     JSON.parse(JSON.stringify(template.content)) || {}, //Clone-an-object-hack: Make Object a JSON-string, parse that string to a JSON/Javascript-Object back.
+			style:template.style,
 			l_id: new_l_id,
 			children:[],
 			widgetType: widgetType,
@@ -140,10 +140,10 @@ const mutations = {
 	TOGGLEWIDGETSTATE(state,widgetstate,array){
 		widgetstate.state = !widgetstate.state; //toggle
 
-		if(array) { //if array was passed, make all sibling elemenents in that array deactivated. 
+		if(array) { //if array was passed, make all sibling elemenents in that array deactivated.
 			array.forEach(function(element,index){
 				element.widgetstate.state = false;
-			})
+			});
 		}
 	}
 };

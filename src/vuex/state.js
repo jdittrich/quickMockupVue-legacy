@@ -4,12 +4,16 @@ export default  { //should there be a var?
 		{   //why cw...? if you have button and there is a button in your button template you get recursion to inifinity
 			// or maybe they should just get some random gibberish as name; we can still show the user a human readable name
 			name:"cwbutton",
-			templatestring:'Testtext <button><widgetinlineedit :content="content">huhu</widgetinlineedit></button> ',
-			content:{text:"qwertz"}
+			templatestring:'<div>Testtext <button><widgetinlineedit :content="content">huhu</widgetinlineedit></button><widgettogglestate :state="highlighted"></widgettogglestate></div>',
+			content:{text:"qwertz"},
+			highlighted:{state:true}
 		},
 		{
 			name:"cwwindow",
-			templatestring:'<div :style="cssstyles.mainelement">WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list" :style="cssstyles.listelement">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist></div>',
+			templatestring:'<div :style="cssstyles.mainelement">WINDOW,I AM, <strong>YODA</strong>, TOO, I AM <widgetinlineedit :content="content">huhu</widgetinlineedit><widgetList :list="content.list" :style="cssstyles.listelement">list!<li v-for="item in content.list" track-by="$index"><widgetInlineEdit :content="item">bla</widgetinlineedit>he:{{$index}}</li></widgetlist>State: <widgettogglestate :state="highlighted"></widgettogglestate></div>',
+			highlighted:{
+				state:false
+			},
 			content:{
 				windowtitle:{text:"heho"},
 				list:[

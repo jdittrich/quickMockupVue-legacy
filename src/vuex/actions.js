@@ -70,6 +70,6 @@ export function changeWidgetText(store, content, text){
 	store.dispatch("CHANGEWIDGETTEXT",content, text);
 }
 
-export function toggleState(store,widgetstate,array){//TODO: should that be just "state" and further specified in the view/event handler or should the action more specialized? I assume: not specialize, do it on view.
+export function toggleWidgetState(store,widgetstate,array){//TODO: should that be just "state" and further specified in the view/event handler or should the action more specialized? I assume: not specialize, do it on view.
 	store.dispatch("TOGGLEWIDGETSTATE",state,array);
 }

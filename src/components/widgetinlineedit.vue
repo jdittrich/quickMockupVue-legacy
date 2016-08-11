@@ -11,16 +11,10 @@
 </template>
 <script>
 
-import changeWidgetText from '../vuex/actions.js'
+import changeWidgetText from '../vuex/actions.js';
 
 export default {
     name:"widgetinlineedit",
-    created(){
-
-    },
-    compiled(){
-
-    },
     props: {
         //"text":null,//text should be string, but if it does not exists yet, it might be
         "content":Object //should evaluate to: content needs a text object
@@ -28,7 +22,7 @@ export default {
     data(){
         return{
             editMode:false
-        }
+        };
     },
     methods:{
         enterEdit(){
@@ -52,7 +46,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 <style>
 </style>

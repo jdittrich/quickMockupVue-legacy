@@ -13,6 +13,7 @@ the component that does actually does this.-->
 
       :is="templatename"
       :content="content"
+      :highlighted="highlighted"
       :cssstyles="template.cssstyles"></component>
   </div>
 </template>
@@ -23,6 +24,7 @@ import Vue from 'vue'
 
 import widgetinlineedit from './widgetinlineedit.vue'
 import widgetlist from './widgetlist.vue'
+import widgetToggleState from './widgetToggleState.vue'
 import {alltemplates} from '../vuex/getters.js'
 
 export default {
@@ -34,13 +36,15 @@ export default {
         Vue.component(this.templatename,
             {
                 template:this.template.templatestring,
-                props:{
+                props:{ //that must be improved, it must be added in the adding mutation and here and at the props of the template and in mockupwidget's mockuptemplate template...
                     "content":Object,
-                    "cssstyles":Object
+                    "cssstyles":Object,
+                    "highlighted":Object
                 },
                 components:{
                     "widgetinlineedit":widgetinlineedit,
-                    "widgetlist":widgetlist
+                    "widgetlist":widgetlist,
+                    "widgettogglestate":widgetToggleState,
                 } //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
             }
         );//COMPENENT END
@@ -54,6 +58,7 @@ export default {
                 return {text:"inputText"}
             }
         },
+        "highlighted":Object
     },
     computed:{
         template:function(){

@@ -27,6 +27,7 @@ v-on:mousedown.stop="selectHandler"
 <!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
     <widgettemplate
         :content="widgetdata.content"
+        :highlighted="widgetdata.highlighted"
         :templatename="widgetdata.widgetType">
 
     </widgettemplate>
