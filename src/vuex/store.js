@@ -5,7 +5,8 @@ import state from './state.js';
 
 Vue.use(Vuex);
 
-function helperIdToObject(elements, id){
+//the following are also useful in computered properties, so thery are exported.
+export function helperIdToObject(elements, id){
 	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var element = elements.find(function(element){
 		return element.l_id === id;
@@ -14,7 +15,7 @@ function helperIdToObject(elements, id){
 }
 
 
-function helperFindParentObject(possibleParents, childElement){
+export function helperFindParentObject(possibleParents, childElement){
 	//WHAT IT DOES: for an array of widgets, returns the widget that is the parent of the childElement
 	var parent = possibleParents.find(function(possibleParent){
 		return possibleParent.children.includes(childElement.l_id);
@@ -23,7 +24,7 @@ function helperFindParentObject(possibleParents, childElement){
 }
 
 
-function helperFindTemplate(templates,templatename){
+export function helperFindTemplate(templates,templatename){
   //WHAT IT DOES: for an array of templates, returns the template object with the templatename
   var template = templates.find(function(possibleTemplate){
 		return possibleTemplate.name === templatename;

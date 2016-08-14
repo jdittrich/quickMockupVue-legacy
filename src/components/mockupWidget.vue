@@ -26,11 +26,10 @@ v-on:mousedown.stop="selectHandler"
 <!-- todo -->
 <!-- I assumed that directives could only be set from the context that says: put component here. That was wrong -->
     <widgettemplate
-        :content="widgetdata.content"
-        :highlighted="widgetdata.highlighted"
+        :lid="widgetdata.l_id"
         :templatename="widgetdata.widgetType">
-
     </widgettemplate>
+
     {{widgetdata | json}} größer als 0? {{childMockupWidgets.length}}
 
     {{widgetdata.rect.width+'px'}}{{widgetdata.rect.height+'px'}}
@@ -50,8 +49,7 @@ v-on:mousedown.stop="selectHandler"
         <mockupwidget
             v-if="childMockupWidgets.length > 0"
             v-for="mockupwidget in childMockupWidgets"
-            :widgetdata="mockupwidget"
-            :content="mockupwidget.content"
+            :lid="mockupwidget.l_id"
             ></mockupwidget>
     </div>
 </div>
@@ -63,13 +61,14 @@ import widgettemplate from './widgetTemplate.vue';
 import draggable from '../directives/directive-draggable.js';
 import dropable from '../directives/directive-dropable.js';
 import resizable from '../directives/directive-resizable.js';
+import {helperIdToObject} from '../vuex/store.js';
 import {selectWidget} from '../vuex/actions.js';
-import {selectedWidget,allwidgets} from '../vuex/getters.js'
+import {selectedWidget,allwidgets} from '../vuex/getters.js';
 
 export default {
     name:"mockupwidget",
     props:{
-        widgetdata:Object
+        lid:String
     },
     directives:{
         'draggable':draggable,
@@ -86,12 +85,16 @@ export default {
       }
     },
     computed:{
+      widgetdata(){
+          var widgetdataObject = helperIdToObject(this.allwidgets,this.lid);
+          return widgetdataObject;
+      },
       childMockupWidgets(){ //uses ids to get the children's objects as values.
         //console.log("this, this.wd",this,this.widgetdata)
         var that = this;
         var childwidgets = this.allwidgets.filter(function(element, index, array){
           //console.log("childwidgets", that)
-          return that.widgetdata.children.includes(element.l_id)
+          return that.widgetdata.children.includes(element.l_id);
         });
         return childwidgets;
       },

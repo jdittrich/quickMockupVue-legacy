@@ -12,7 +12,7 @@
         <mockupwidget
             v-for="mockupwidget in childMockupWidgets"
 
-            :widgetdata="mockupwidget"
+            :lid="widgetdata.l_id"
 
             ></mockupwidget>
     </div>
@@ -43,8 +43,8 @@ export default {
 			childMockupWidgets(){ //uses ids to get the children's objects as values.
 				var that = this;
 				var childwidgets = this.allwidgets.filter(function(element, index, array){
-					return that.widgetdata.children.includes(element.l_id)
-				})
+					return that.widgetdata.children.includes(element.l_id);
+				});
 				return childwidgets;
 			},
 		},
@@ -56,8 +56,8 @@ export default {
             widgetdata(state){
                 var canvasdata = state.mockupwidgets.find(function(element, index, array){
 					return element.l_id == 0;
-				})
-                console.log(canvasdata);
+				});
+                console.log("canvasdata: ",canvasdata);
                 return canvasdata;
             }
         }

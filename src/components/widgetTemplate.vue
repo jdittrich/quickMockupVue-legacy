@@ -10,55 +10,56 @@ the component that does actually does this.-->
    -->
   <div class="widgetTemplate">
       <component
-
       :is="templatename"
-      :content="content"
-      :highlighted="highlighted"
-      :cssstyles="template.cssstyles"></component>
+      :lid="widgetdata.l_id"></component>
   </div>
 </template>
 
 <script>
 
-import Vue from 'vue'
+import Vue from 'vue';
 
-import widgetinlineedit from './widgetinlineedit.vue'
-import widgetlist from './widgetlist.vue'
-import widgetToggleState from './widgetToggleState.vue'
-import {alltemplates} from '../vuex/getters.js'
+import widgetinlineedit from './widgetinlineedit.vue';
+import widgetlist from './widgetlist.vue';
+import widgetToggleState from './widgetToggleState.vue';
+import {alltemplates,allwidgets} from '../vuex/getters.js';
+import {helperIdToObject} from '../vuex/store.js';
 
 export default {
     /*the content of a template is dynamically created. Problem: before the component around the content is created, there is no access to the passed data (which contantains the template name and template string) So we create the component  dynamically in the created-hook which happens before the dom rendering and after the data bi   nding.*/
-
-
     created:function(){
         //dynamically create component defining the look of the widget
-        Vue.component(this.templatename,
+        var that = this;
+        Vue.component(this.templatename, //needs both since mere templates in sidebar don't have lid
             {
                 template:this.template.templatestring,
                 props:{ //that must be improved, it must be added in the adding mutation and here and at the props of the template and in mockupwidget's mockuptemplate template...
-                    "content":Object,
-                    "cssstyles":Object,
-                    "highlighted":Object
+                    "lid":String,
                 },
                 components:{
                     "widgetinlineedit":widgetinlineedit,
                     "widgetlist":widgetlist,
                     "widgettogglestate":widgetToggleState,
-                } //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
+                }, //here we need *all* components since we don't know (at least with the current infrastructure) which will be needed
+                computed:{
+                    cssstyles(){
+                        return that.template.cssstyles;
+                    },
+                    highlighted(){
+                        console.log("highlighted", that);
+                        return that.widgetdata.highlighted;
+                    },
+                    content(){
+                        return that.widgetdata.content;
+                    }
+                },
             }
         );//COMPENENT END
 
     },
     props:{
-        templatename:String,
-        content:{
-            type:Object,
-            default:function(){
-                return {text:"inputText"}
-            }
-        },
-        "highlighted":Object
+        lid:String,
+        templatename:String
     },
     computed:{
         template:function(){
@@ -66,18 +67,23 @@ export default {
             var that = this;
             var template = that.alltemplates.find(function(element, index,array){
                 console.log("elementname",element.name,"templatename", that.templatename);
-                return element.name === that.templatename;
+                    return element.name === that.templatename;
             });
             console.log("template",template);
-            return template //.templatestring;
-        }
+            return template; //.templatestring;
+        },
+        widgetdata(){
+            var widgetdataObject = helperIdToObject(this.allwidgets,this.lid);
+            return widgetdataObject;
+        },
     },
     vuex:{
         getters:{
-            alltemplates:alltemplates
+            alltemplates:alltemplates,
+            allwidgets:allwidgets
         }
     }
-}
+};
 </script>
 
 <style>
